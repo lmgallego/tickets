@@ -233,19 +233,23 @@ def get_incidents():
 def insert_incident_record(date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, enlace, status, responsible):
     try:
         client = get_supabase_connection()
+        # Convertir fecha a string si es necesario
+        date_str = date.isoformat() if hasattr(date, 'isoformat') else str(date)
+        
+        # Temporalmente excluir 'enlace' hasta que se agregue la columna en Supabase
         result = client.table('incident_records').insert({
-            'date': date,
+            'date': date_str,
             'registering_coordinator_id': registering_coordinator_id,
             'warehouse_id': warehouse_id,
             'causing_verifier_id': causing_verifier_id,
             'incident_id': incident_id,
             'assigned_coordinator_id': assigned_coordinator_id,
             'explanation': explanation,
-            'enlace': enlace,
+            # 'enlace': enlace,  # Comentado temporalmente - columna no existe en Supabase
             'status': status,
             'responsible': responsible
         }).execute()
-        logger.info(f"Inserted incident record on date {date}")
+        logger.info(f"Inserted incident record on date {date_str}")
         return True
     except Exception as e:
         logger.error(f"Error inserting incident record: {e}")
@@ -254,24 +258,32 @@ def insert_incident_record(date, registering_coordinator_id, warehouse_id, causi
 def get_incident_records():
     try:
         client = get_supabase_connection()
+        # Temporalmente excluir 'enlace' de la consulta hasta que se agregue la columna en Supabase
         result = client.table('incident_records').select(
-            'id, date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, status, responsible, '
-            'coordinators!registering_coordinator_id(name, surnames), '
-            'warehouses(name), '
-            'verifiers(name, surnames), '
-            'incidents(code, description), '
-            'coordinators!assigned_coordinator_id(name, surnames)'
+            'id, date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, status, responsible'
         ).order('date', desc=True).execute()
+        
+        # Obtener datos relacionados por separado para evitar conflictos
+        coordinators = {coord['id']: coord for coord in client.table('coordinators').select('*').execute().data}
+        warehouses = {wh['id']: wh for wh in client.table('warehouses').select('*').execute().data}
+        verifiers = {ver['id']: ver for ver in client.table('verifiers').select('*').execute().data}
+        incidents = {inc['id']: inc for inc in client.table('incidents').select('*').execute().data}
         
         records = []
         for record in result.data:
-            registering_coordinator = f"{record['coordinators']['name']} {record['coordinators']['surnames']}"
-            warehouse = record['warehouses']['name']
-            causing_verifier = f"{record['verifiers']['name']} {record['verifiers']['surnames']}"
-            incident = f"{record['incidents']['code']} - {record['incidents']['description']}"
-            assigned_coordinator = f"{record['coordinators']['name']} {record['coordinators']['surnames']}"
+            reg_coord = coordinators.get(record['registering_coordinator_id'], {})
+            warehouse = warehouses.get(record['warehouse_id'], {})
+            verifier = verifiers.get(record['causing_verifier_id'], {})
+            incident = incidents.get(record['incident_id'], {})
+            assigned_coord = coordinators.get(record['assigned_coordinator_id'], {})
             
-            display_text = f"ID: {record['id']} - Fecha: {record['date']} - Incidencia: {incident} - Bodega: {warehouse} - Verificador: {causing_verifier} - Coordinador: {assigned_coordinator}"
+            registering_coordinator = f"{reg_coord.get('name', '')} {reg_coord.get('surnames', '')}"
+            warehouse_name = warehouse.get('name', 'N/A')
+            causing_verifier = f"{verifier.get('name', '')} {verifier.get('surnames', '')}"
+            incident_desc = f"{incident.get('code', '')} - {incident.get('description', '')}"
+            assigned_coordinator = f"{assigned_coord.get('name', '')} {assigned_coord.get('surnames', '')}"
+            
+            display_text = f"ID: {record['id']} - Fecha: {record['date']} - Incidencia: {incident_desc} - Bodega: {warehouse_name} - Verificador: {causing_verifier} - Coordinador: {assigned_coordinator}"
             records.append((record['id'], display_text))
         
         return records
@@ -283,10 +295,16 @@ def insert_incident_action(incident_record_id, action_date, action_description, 
     try:
         client = get_supabase_connection()
         
+        # Convertir la fecha a string si es necesario
+        if hasattr(action_date, 'strftime'):
+            action_date_str = action_date.strftime('%Y-%m-%d')
+        else:
+            action_date_str = str(action_date)
+        
         # Insertar la acción
         result = client.table('incident_actions').insert({
             'incident_record_id': incident_record_id,
-            'action_date': action_date,
+            'action_date': action_date_str,
             'action_description': action_description,
             'new_status': new_status,
             'performed_by': performed_by
@@ -308,18 +326,16 @@ def get_incident_actions(incident_record_id):
     try:
         client = get_supabase_connection()
         result = client.table('incident_actions').select(
-            'action_date, action_description, new_status, coordinators(name, surnames)'
+            'action_date, action_description, new_status, performed_by'
         ).eq('incident_record_id', incident_record_id).order('action_date').execute()
         
         actions = []
         for row in result.data:
-            coordinator = row['coordinators']
-            performed_by = f"{coordinator['name']} {coordinator['surnames']}" if coordinator else "N/A"
             actions.append({
                 'action_date': row['action_date'],
                 'action_description': row['action_description'],
                 'new_status': row['new_status'],
-                'performed_by': performed_by
+                'performed_by': row['performed_by'] or "N/A"
             })
         
         return actions
@@ -360,7 +376,7 @@ def get_all_incident_records_df():
                 'Tipo de Incidencia': incident.get('description', 'N/A'),
                 'Coordinador Asignado': f"{assigned_coord.get('name', '')} {assigned_coord.get('surnames', '')}" if assigned_coord else "N/A",
                 'Explicación': row['explanation'],
-                'Enlace': row.get('enlace', ''),
+                'Enlace': '',  # Temporalmente vacío - columna no existe en Supabase
                 'Estado': row['status'],
                 'Responsable': row['responsible']
             }
@@ -447,31 +463,32 @@ def reset_database():
 def get_incident_record_details(incident_record_id):
     try:
         client = get_supabase_connection()
+        # Temporalmente excluir 'enlace' de la consulta hasta que se agregue la columna en Supabase
         result = client.table('incident_records').select(
-            '''
-            id, date, explanation, enlace, status, responsible, registering_coordinator_id,
-            warehouses!warehouse_id(name, zone),
-            verifiers!causing_verifier_id(name, surnames),
-            incidents!incident_id(code, description),
-            coordinators!assigned_coordinator_id(name, surnames),
-            coordinators!registering_coordinator_id(name, surnames)
-            '''
+            'id, date, explanation, status, responsible, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id'
         ).eq('id', incident_record_id).execute()
         
         if result.data:
             record = result.data[0]
+            
+            # Obtener datos relacionados por separado
+            warehouse = client.table('warehouses').select('name, zone').eq('id', record['warehouse_id']).execute().data[0] if record['warehouse_id'] else {}
+            verifier = client.table('verifiers').select('name, surnames').eq('id', record['causing_verifier_id']).execute().data[0] if record['causing_verifier_id'] else {}
+            incident = client.table('incidents').select('code, description').eq('id', record['incident_id']).execute().data[0] if record['incident_id'] else {}
+            assigned_coord = client.table('coordinators').select('name, surnames').eq('id', record['assigned_coordinator_id']).execute().data[0] if record['assigned_coordinator_id'] else {}
+            
             return {
                 'id': record['id'],
                 'date': record['date'],
                 'explanation': record['explanation'],
-                'enlace': record.get('enlace', ''),
+                'enlace': '',  # Temporalmente vacío - columna no existe en Supabase
                 'status': record['status'],
                 'responsible': record['responsible'],
-                'warehouse': record['warehouses']['name'],
-                'warehouse_zone': record['warehouses']['zone'],
-                'causing_verifier': f"{record['verifiers']['name']} {record['verifiers']['surnames']}",
-                'incident_type': f"{record['incidents']['code']} - {record['incidents']['description']}",
-                'assigned_coordinator': f"{record['coordinators']['name']} {record['coordinators']['surnames']}",
+                'warehouse': warehouse.get('name', 'N/A'),
+                'warehouse_zone': warehouse.get('zone', 'N/A'),
+                'causing_verifier': f"{verifier.get('name', '')} {verifier.get('surnames', '')}" if verifier else 'N/A',
+                'incident_type': f"{incident.get('code', '')} - {incident.get('description', '')}" if incident else 'N/A',
+                'assigned_coordinator': f"{assigned_coord.get('name', '')} {assigned_coord.get('surnames', '')}" if assigned_coord else 'N/A',
                 'registering_coordinator_id': record['registering_coordinator_id']
             }
         return None
@@ -485,33 +502,91 @@ def export_incidents_to_excel():
         # Obtener datos usando las funciones existentes
         df_incidents = get_all_incident_records_df()
         
-        # Para las acciones, necesitamos una consulta separada
+        # Formatear fechas en el DataFrame de incidencias
+        if not df_incidents.empty and 'Fecha' in df_incidents.columns:
+            df_incidents['Fecha'] = pd.to_datetime(df_incidents['Fecha']).dt.strftime('%d/%m/%Y')
+        
+        # Para las acciones, necesitamos una consulta separada con nombres de coordinadores
         client = get_supabase_connection()
         actions_result = client.table('incident_actions').select(
-            'incident_record_id, action_date, action_description, new_status, '
-            'coordinators(name, surnames)'
+            'incident_record_id, action_date, action_description, new_status, performed_by'
         ).execute()
+        
+        # Obtener coordinadores para resolver los IDs
+        coordinators = {coord['id']: f"{coord['name']} {coord['surnames']}" 
+                       for coord in client.table('coordinators').select('*').execute().data}
         
         actions_data = []
         for row in actions_result.data:
-            coordinator = row['coordinators']
+            # Formatear fecha de acción
+            action_date = row['action_date']
+            if action_date:
+                try:
+                    formatted_date = pd.to_datetime(action_date).strftime('%d/%m/%Y')
+                except:
+                    formatted_date = action_date
+            else:
+                formatted_date = "N/A"
+            
+            # Resolver nombre del coordinador
+            performed_by_name = "N/A"
+            if row['performed_by']:
+                try:
+                    coord_id = int(row['performed_by'])
+                    performed_by_name = coordinators.get(coord_id, f"ID: {coord_id}")
+                except:
+                    performed_by_name = str(row['performed_by'])
+            
             actions_data.append({
                 'ID Registro': row['incident_record_id'],
-                'Fecha Acción': row['action_date'],
+                'Fecha Acción': formatted_date,
                 'Descripción Acción': row['action_description'],
                 'Nuevo Estado': row['new_status'],
-                'Realizado Por': f"{coordinator['name']} {coordinator['surnames']}" if coordinator else "N/A"
+                'Realizado Por': performed_by_name
             })
         
         df_actions = pd.DataFrame(actions_data)
         
-        # Crear archivo Excel
+        # Crear archivo Excel con formato mejorado
         timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
         filename = f'historial_incidencias_{timestamp}.xlsx'
         
         with pd.ExcelWriter(filename, engine='openpyxl') as writer:
             df_incidents.to_excel(writer, sheet_name='Incidencias', index=False)
             df_actions.to_excel(writer, sheet_name='Acciones', index=False)
+            
+            # Aplicar formato a las hojas
+            workbook = writer.book
+            
+            # Formatear hoja de Incidencias
+            if 'Incidencias' in writer.sheets:
+                worksheet_incidents = writer.sheets['Incidencias']
+                for column in worksheet_incidents.columns:
+                    max_length = 0
+                    column_letter = column[0].column_letter
+                    for cell in column:
+                        try:
+                            if len(str(cell.value)) > max_length:
+                                max_length = len(str(cell.value))
+                        except:
+                            pass
+                    adjusted_width = min(max_length + 2, 50)
+                    worksheet_incidents.column_dimensions[column_letter].width = adjusted_width
+            
+            # Formatear hoja de Acciones
+            if 'Acciones' in writer.sheets:
+                worksheet_actions = writer.sheets['Acciones']
+                for column in worksheet_actions.columns:
+                    max_length = 0
+                    column_letter = column[0].column_letter
+                    for cell in column:
+                        try:
+                            if len(str(cell.value)) > max_length:
+                                max_length = len(str(cell.value))
+                        except:
+                            pass
+                    adjusted_width = min(max_length + 2, 50)
+                    worksheet_actions.column_dimensions[column_letter].width = adjusted_width
         
         return filename
     except Exception as e:
@@ -573,7 +648,8 @@ def get_dashboard_stats():
         # Incidencias por estado
         df = get_all_incident_records_df()
         if not df.empty:
-            stats['by_status'] = df.groupby('status').size().reset_index(name='count')
+            stats['by_status'] = df.groupby('Estado').size().reset_index(name='count')
+            stats['by_status'].rename(columns={'Estado': 'status'}, inplace=True)
         else:
             stats['by_status'] = pd.DataFrame()
         
@@ -599,26 +675,58 @@ def get_pending_incidents_summary():
     try:
         client = get_supabase_connection()
         result = client.table('incident_records').select(
-            'id, date, status, responsible, '
-            'warehouses(name, zone), verifiers(name, surnames), '
-            'incidents(description), coordinators(name, surnames)'
+            'id, date, status, responsible, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id'
         ).neq('status', 'Solucionado').order('date', desc=True).limit(10).execute()
         
         processed_data = []
         for row in result.data:
-            warehouse = row['warehouses']
-            verifier = row['verifiers']
-            incident = row['incidents']
-            coordinator = row['coordinators']
+            # Obtener datos relacionados mediante consultas separadas para evitar joins problemáticos
+            warehouse_name = "N/A"
+            warehouse_zone = "N/A"
+            if row.get('warehouse_id'):
+                try:
+                    warehouse_result = client.table('warehouses').select('name, zone').eq('id', row['warehouse_id']).execute()
+                    if warehouse_result.data:
+                        warehouse_name = warehouse_result.data[0]['name']
+                        warehouse_zone = warehouse_result.data[0]['zone']
+                except:
+                    pass
+            
+            verifier_name = "N/A"
+            if row.get('causing_verifier_id'):
+                try:
+                    verifier_result = client.table('verifiers').select('name, surnames').eq('id', row['causing_verifier_id']).execute()
+                    if verifier_result.data:
+                        verifier_name = f"{verifier_result.data[0]['name']} {verifier_result.data[0]['surnames']}"
+                except:
+                    pass
+            
+            incident_description = "N/A"
+            if row.get('incident_id'):
+                try:
+                    incident_result = client.table('incidents').select('description').eq('id', row['incident_id']).execute()
+                    if incident_result.data:
+                        incident_description = incident_result.data[0]['description']
+                except:
+                    pass
+            
+            coordinator_name = "N/A"
+            if row.get('assigned_coordinator_id'):
+                try:
+                    coordinator_result = client.table('coordinators').select('name, surnames').eq('id', row['assigned_coordinator_id']).execute()
+                    if coordinator_result.data:
+                        coordinator_name = f"{coordinator_result.data[0]['name']} {coordinator_result.data[0]['surnames']}"
+                except:
+                    pass
             
             processed_data.append({
                 'id': row['id'],
                 'date': row['date'],
-                'warehouse': warehouse['name'] if warehouse else "N/A",
-                'warehouse_zone': warehouse['zone'] if warehouse else "N/A",
-                'causing_verifier': f"{verifier['name']} {verifier['surnames']}" if verifier else "N/A",
-                'incident_type': incident['description'] if incident else "N/A",
-                'assigned_coordinator': f"{coordinator['name']} {coordinator['surnames']}" if coordinator else "N/A",
+                'warehouse': warehouse_name,
+                'warehouse_zone': warehouse_zone,
+                'causing_verifier': verifier_name,
+                'incident_type': incident_description,
+                'assigned_coordinator': coordinator_name,
                 'status': row['status'],
                 'responsible': row['responsible']
             })
@@ -633,23 +741,18 @@ def get_recent_actions():
     try:
         client = get_supabase_connection()
         result = client.table('incident_actions').select(
-            'action_date, action_description, new_status, '
-            'coordinators(name, surnames), incident_records(id, warehouses(name))'
+            'action_date, action_description, new_status, performed_by, incident_record_id'
         ).order('action_date', desc=True).limit(5).execute()
         
         processed_data = []
         for row in result.data:
-            coordinator = row['coordinators']
-            incident_record = row['incident_records']
-            warehouse = incident_record['warehouses'] if incident_record else None
-            
             processed_data.append({
                 'action_date': row['action_date'],
                 'action_description': row['action_description'],
                 'new_status': row['new_status'],
-                'performed_by': f"{coordinator['name']} {coordinator['surnames']}" if coordinator else "N/A",
-                'incident_id': incident_record['id'] if incident_record else "N/A",
-                'warehouse': warehouse['name'] if warehouse else "N/A"
+                'performed_by': row['performed_by'] or "N/A",
+                'incident_id': row['incident_record_id'] or "N/A",
+                'warehouse': "N/A"  # Simplificado para evitar joins complejos
             })
         
         return pd.DataFrame(processed_data)
@@ -702,7 +805,7 @@ def get_incident_records_by_incident_code(code):
                     'causing_verifier': f"{verifier['name']} {verifier['surnames']}" if verifier else "N/A",
                     'assigned_coordinator': f"{assigned_coord['name']} {assigned_coord['surnames']}" if assigned_coord else "N/A",
                     'explanation': row['explanation'],
-                    'enlace': row.get('enlace', ''),
+                    'enlace': '',  # Temporalmente vacío - columna no existe en Supabase
                     'status': row['status'],
                     'responsible': row['responsible']
                 })
@@ -786,17 +889,22 @@ def update_incident(incident_id, code, description):
         logger.error(f"Error updating incident: {e}")
         return False
 
-def update_incident_record(incident_record_id, date, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, status, responsible):
+def update_incident_record(incident_record_id, date, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, enlace, status, responsible):
     """Actualizar un registro de incidencia existente"""
     try:
         client = get_supabase_connection()
+        # Convertir fecha a string si es necesario
+        date_str = date.isoformat() if hasattr(date, 'isoformat') else str(date)
+        
+        # Temporalmente excluir 'enlace' hasta que se agregue la columna en Supabase
         result = client.table('incident_records').update({
-            'date': date,
+            'date': date_str,
             'warehouse_id': warehouse_id,
             'causing_verifier_id': causing_verifier_id,
             'incident_id': incident_id,
             'assigned_coordinator_id': assigned_coordinator_id,
             'explanation': explanation,
+            # 'enlace': enlace,  # Comentado temporalmente - columna no existe en Supabase
             'status': status,
             'responsible': responsible
         }).eq('id', incident_record_id).execute()
@@ -858,31 +966,69 @@ def get_pending_incidents_by_coordinator(coordinator_id=None):
         if coordinator_id:
             result = client.table('incident_records').select(
                 'id, date, status, responsible, '
-                'warehouses(name, zone), verifiers(name, surnames), '
-                'incidents(description), coordinators(name, surnames)'
+                'warehouses!incident_records_warehouse_id_fkey(name, zone), '
+                'verifiers!incident_records_causing_verifier_id_fkey(name, surnames), '
+                'incidents!incident_records_incident_id_fkey(description), '
+                'coordinators!incident_records_assigned_coordinator_id_fkey(name, surnames)'
             ).neq('status', 'Solucionado').eq('assigned_coordinator_id', coordinator_id).order('date', desc=True).limit(10).execute()
         else:
             result = client.table('incident_records').select(
                 'id, date, status, responsible, '
-                'warehouses(name, zone), verifiers(name, surnames), '
-                'incidents(description), coordinators(name, surnames)'
+                'warehouses!incident_records_warehouse_id_fkey(name, zone), '
+                'verifiers!incident_records_causing_verifier_id_fkey(name, surnames), '
+                'incidents!incident_records_incident_id_fkey(description), '
+                'coordinators!incident_records_assigned_coordinator_id_fkey(name, surnames)'
             ).neq('status', 'Solucionado').order('date', desc=True).limit(10).execute()
         
         processed_data = []
         for row in result.data:
-            warehouse = row['warehouses']
-            verifier = row['verifiers']
-            incident = row['incidents']
-            coordinator = row['coordinators']
+            # Obtener datos relacionados mediante consultas separadas para evitar joins problemáticos
+            warehouse_name = "N/A"
+            warehouse_zone = "N/A"
+            if row.get('warehouse_id'):
+                try:
+                    warehouse_result = client.table('warehouses').select('name, zone').eq('id', row['warehouse_id']).execute()
+                    if warehouse_result.data:
+                        warehouse_name = warehouse_result.data[0]['name']
+                        warehouse_zone = warehouse_result.data[0]['zone']
+                except:
+                    pass
+            
+            verifier_name = "N/A"
+            if row.get('causing_verifier_id'):
+                try:
+                    verifier_result = client.table('verifiers').select('name, surnames').eq('id', row['causing_verifier_id']).execute()
+                    if verifier_result.data:
+                        verifier_name = f"{verifier_result.data[0]['name']} {verifier_result.data[0]['surnames']}"
+                except:
+                    pass
+            
+            incident_description = "N/A"
+            if row.get('incident_id'):
+                try:
+                    incident_result = client.table('incidents').select('description').eq('id', row['incident_id']).execute()
+                    if incident_result.data:
+                        incident_description = incident_result.data[0]['description']
+                except:
+                    pass
+            
+            coordinator_name = "N/A"
+            if row.get('assigned_coordinator_id'):
+                try:
+                    coordinator_result = client.table('coordinators').select('name, surnames').eq('id', row['assigned_coordinator_id']).execute()
+                    if coordinator_result.data:
+                        coordinator_name = f"{coordinator_result.data[0]['name']} {coordinator_result.data[0]['surnames']}"
+                except:
+                    pass
             
             processed_data.append({
                 'id': row['id'],
                 'date': row['date'],
-                'warehouse': warehouse['name'] if warehouse else "N/A",
-                'warehouse_zone': warehouse['zone'] if warehouse else "N/A",
-                'causing_verifier': f"{verifier['name']} {verifier['surnames']}" if verifier else "N/A",
-                'incident_type': incident['description'] if incident else "N/A",
-                'assigned_coordinator': f"{coordinator['name']} {coordinator['surnames']}" if coordinator else "N/A",
+                'warehouse': warehouse_name,
+                'warehouse_zone': warehouse_zone,
+                'causing_verifier': verifier_name,
+                'incident_type': incident_description,
+                'assigned_coordinator': coordinator_name,
                 'status': row['status'],
                 'responsible': row['responsible']
             })
@@ -897,12 +1043,11 @@ def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
     try:
         client = get_supabase_connection()
         
-        # Construir la consulta base
+        # Construir la consulta base SIN joins para evitar problemas de ambigüedad
         query = client.table('incident_records').select(
-            'id, date, status, responsible, '
-            'warehouses(name, zone), verifiers(name, surnames), '
-            'incidents(description), coordinators(name, surnames)'
-        ).neq('status', 'Solucionado')
+            'id, date, status, responsible, explanation, '
+            'warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id'
+        )
         
         # Agregar filtros según los parámetros
         if coordinator_id:
@@ -910,6 +1055,10 @@ def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
         
         if status:
             query = query.eq('status', status)
+        else:
+            # Solo excluir 'Solucionado' si no se especifica un status particular
+            # Esto permite mostrar todos los estados cuando status=None
+            pass  # No aplicar filtro de status, mostrar todos
         
         if days:
             from datetime import datetime, timedelta
@@ -920,19 +1069,53 @@ def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
         
         processed_data = []
         for row in result.data:
-            warehouse = row['warehouses']
-            verifier = row['verifiers']
-            incident = row['incidents']
-            coordinator = row['coordinators']
+            # Obtener datos relacionados mediante consultas separadas para evitar joins problemáticos
+            warehouse_name = "N/A"
+            warehouse_zone = "N/A"
+            if row.get('warehouse_id'):
+                try:
+                    warehouse_result = client.table('warehouses').select('name, zone').eq('id', row['warehouse_id']).execute()
+                    if warehouse_result.data:
+                        warehouse_name = warehouse_result.data[0]['name']
+                        warehouse_zone = warehouse_result.data[0]['zone']
+                except:
+                    pass
+            
+            verifier_name = "N/A"
+            if row.get('causing_verifier_id'):
+                try:
+                    verifier_result = client.table('verifiers').select('name, surnames').eq('id', row['causing_verifier_id']).execute()
+                    if verifier_result.data:
+                        verifier_name = f"{verifier_result.data[0]['name']} {verifier_result.data[0]['surnames']}"
+                except:
+                    pass
+            
+            incident_description = "N/A"
+            if row.get('incident_id'):
+                try:
+                    incident_result = client.table('incidents').select('description').eq('id', row['incident_id']).execute()
+                    if incident_result.data:
+                        incident_description = incident_result.data[0]['description']
+                except:
+                    pass
+            
+            coordinator_name = "N/A"
+            if row.get('assigned_coordinator_id'):
+                try:
+                    coordinator_result = client.table('coordinators').select('name, surnames').eq('id', row['assigned_coordinator_id']).execute()
+                    if coordinator_result.data:
+                        coordinator_name = f"{coordinator_result.data[0]['name']} {coordinator_result.data[0]['surnames']}"
+                except:
+                    pass
             
             processed_data.append({
                 'id': row['id'],
                 'date': row['date'],
-                'warehouse': warehouse['name'] if warehouse else "N/A",
-                'warehouse_zone': warehouse['zone'] if warehouse else "N/A",
-                'causing_verifier': f"{verifier['name']} {verifier['surnames']}" if verifier else "N/A",
-                'incident_type': incident['description'] if incident else "N/A",
-                'assigned_coordinator': f"{coordinator['name']} {coordinator['surnames']}" if coordinator else "N/A",
+                'warehouse': warehouse_name,
+                'warehouse_zone': warehouse_zone,
+                'causing_verifier': verifier_name,
+                'incident_type': incident_description,
+                'assigned_coordinator': coordinator_name,
                 'status': row['status'],
                 'responsible': row['responsible']
             })

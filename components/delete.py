@@ -42,21 +42,40 @@ def export_excel_form():
     
     if st.button("Exportar a Excel"):
         try:
-            filename = export_incidents_to_excel()
-            st.success(f"Archivo Excel creado exitosamente: {filename}")
+            with st.spinner("Generando archivo Excel..."):
+                filename = export_incidents_to_excel()
             
-            # Ofrecer descarga del archivo
+            st.success(f"✅ Archivo Excel creado exitosamente: {filename}")
+            
+            # Verificar que el archivo existe antes de ofrecer descarga
             if os.path.exists(filename):
                 with open(filename, 'rb') as f:
-                    st.download_button(
-                        label="Descargar Archivo Excel",
-                        data=f.read(),
-                        file_name=filename,
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    )
+                    file_data = f.read()
+                
+                # Usar solo el nombre base del archivo para la descarga
+                base_filename = os.path.basename(filename)
+                
+                st.download_button(
+                    label="📥 Descargar Archivo Excel",
+                    data=file_data,
+                    file_name=base_filename,
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    use_container_width=True
+                )
+                
+                # Mostrar información del archivo
+                file_size = len(file_data)
+                st.info(f"📊 Archivo generado: {base_filename} ({file_size:,} bytes)")
+            else:
+                st.error(f"❌ Error: No se pudo encontrar el archivo generado: {filename}")
+                
         except Exception as e:
-             st.error(f"Error al exportar a Excel: {str(e)}")
-             st.info("Nota: Asegúrate de que openpyxl esté instalado: pip install openpyxl")
+            st.error(f"❌ Error al exportar a Excel: {str(e)}")
+            st.info("💡 Nota: Asegúrate de que openpyxl esté instalado: pip install openpyxl")
+            # Mostrar más detalles del error en modo debug
+            with st.expander("Ver detalles del error"):
+                import traceback
+                st.code(traceback.format_exc())
 
 def restore_database_form():
     st.subheader("Restaurar Copia de Seguridad")

@@ -27,6 +27,7 @@ def display_filtered_table(title, df_getter):
             'Tipo de Incidencia': 'incident_type',
             'Coordinador Asignado': 'assigned_coordinator',
             'Explicación': 'explanation',
+            'Enlace': 'enlace',
             'Estado': 'status',
             'Responsable': 'responsible'
         },
@@ -69,7 +70,27 @@ def display_filtered_table(title, df_getter):
     
     # Ocultar columnas de códigos (asumiendo que son las que terminan en '_id' o 'id')
     display_columns = [col for col in filtered_df.columns if not col.lower().endswith('_id') and col.lower() != 'id']
-    st.dataframe(filtered_df[display_columns])
+    
+    # Mostrar tabla con funcionalidad especial para enlaces
+    display_df = filtered_df[display_columns]
+    
+    # Formatear enlaces como hipervínculos si existe la columna 'Enlace'
+    if 'Enlace' in display_df.columns:
+        # Mostrar la tabla
+        st.dataframe(display_df, use_container_width=True)
+        
+        # Mostrar enlaces como hipervínculos debajo de la tabla si hay enlaces
+        enlaces_con_datos = display_df[display_df['Enlace'].notna() & (display_df['Enlace'] != '')]
+        if not enlaces_con_datos.empty:
+            st.subheader("🔗 Enlaces Disponibles")
+            for idx, row in enlaces_con_datos.iterrows():
+                enlace = row['Enlace']
+                if enlace and enlace.strip():
+                    # Buscar ID en las columnas disponibles
+                    id_value = row.get('ID', idx)
+                    st.markdown(f"**ID {id_value}:** [{enlace}]({enlace})")
+    else:
+        st.dataframe(display_df, use_container_width=True)
 
 def display_chart(title, df_getter, x_col, y_col='count'):
     st.subheader(title)

@@ -207,28 +207,31 @@ def dashboard_main():
     col_quick1, col_quick2, col_quick3, col_quick4, col_quick5 = st.columns(5)
     
     with col_quick1:
-        if st.button("📝 Nuevo Registro", use_container_width=True, type="secondary"):
+        if st.button("📝 Nuevo Registro", use_container_width=True, type="secondary", key="quick_new_record"):
             st.session_state['navigate_to'] = 'new_incident_record'
             st.rerun()
     
     with col_quick2:
-        if st.button("🏷️ Nuevo Código", use_container_width=True, type="secondary"):
+        if st.button("🏷️ Nuevo Código", use_container_width=True, type="secondary", key="quick_new_code"):
             st.session_state['navigate_to'] = 'new_incident_code'
             st.rerun()
     
     with col_quick3:
-        if st.button("⚡ Gestión de Acciones", use_container_width=True, type="secondary"):
+        if st.button("⚡ Gestión de Acciones", use_container_width=True, type="secondary", key="quick_actions"):
             st.session_state['navigate_to'] = 'manage_actions'
             st.rerun()
     
     with col_quick4:
-        if st.button("📊 Analítica Completa", use_container_width=True, type="secondary"):
+        if st.button("📊 Analítica Completa", use_container_width=True, type="secondary", key="quick_analytics"):
             st.session_state['navigate_to'] = 'analytics'
             st.rerun()
     
     with col_quick5:
-        if st.button("📋 Exportar Excel", use_container_width=True, type="secondary"):
+        if st.button("📋 Exportar Excel", use_container_width=True, type="secondary", key="quick_export"):
             st.session_state['navigate_to'] = 'export'
+            # Agregar un pequeño delay para asegurar que el estado se establezca correctamente
+            import time
+            time.sleep(0.1)
             st.rerun()
     
     # Información adicional

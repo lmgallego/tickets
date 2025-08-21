@@ -248,9 +248,15 @@ def incident_record_form():
         st.session_state.incident_record_counter = 0
     
     date = st.date_input('Fecha', datetime.date.today(), key=f'inc_rec_date_{st.session_state.incident_record_counter}', help='Seleccione la fecha de la incidencia')
-    coordinators = get_coordinators()
-    if not coordinators:
-        st.warning('No hay coordinadores disponibles. Por favor, registre uno primero.')
+    try:
+        coordinators = get_coordinators()
+        if not coordinators:
+            st.warning('No hay coordinadores disponibles. Por favor, registre uno primero.')
+            st.info('💡 Puede registrar un coordinador desde el menú "Altas" → "Alta Coordinador"')
+            return
+    except Exception as e:
+        st.error(f'Error al cargar coordinadores: {e}')
+        st.info('💡 Verifique la conexión a la base de datos')
         return
     
     # Agregar opción en blanco para coordinador que registra
@@ -262,9 +268,15 @@ def incident_record_form():
         key=f'inc_rec_reg_coord_{st.session_state.incident_record_counter}'
     )
     registering_coordinator_id = selected_registering_coordinator['id'] if selected_registering_coordinator else None
-    warehouses = get_warehouses()
-    if not warehouses:
-        st.warning('No hay bodegas disponibles. Por favor, registre una primero.')
+    try:
+        warehouses = get_warehouses()
+        if not warehouses:
+            st.warning('No hay bodegas disponibles. Por favor, registre una primero.')
+            st.info('💡 Puede registrar una bodega desde el menú "Altas" → "Alta Bodega"')
+            return
+    except Exception as e:
+        st.error(f'Error al cargar bodegas: {e}')
+        st.info('💡 Verifique la conexión a la base de datos')
         return
     
     # Agregar opción en blanco para bodega
@@ -276,9 +288,15 @@ def incident_record_form():
         key=f'inc_rec_warehouse_{st.session_state.incident_record_counter}'
     )
     warehouse_id = selected_warehouse['id'] if selected_warehouse else None
-    verifiers = get_verifiers()
-    if not verifiers:
-        st.warning('No hay verificadores disponibles. Por favor, registre uno primero.')
+    try:
+        verifiers = get_verifiers()
+        if not verifiers:
+            st.warning('No hay verificadores disponibles. Por favor, registre uno primero.')
+            st.info('💡 Puede registrar un verificador desde el menú "Altas" → "Alta Verificador"')
+            return
+    except Exception as e:
+        st.error(f'Error al cargar verificadores: {e}')
+        st.info('💡 Verifique la conexión a la base de datos')
         return
     
     # Agregar opción en blanco para verificador
@@ -290,9 +308,15 @@ def incident_record_form():
         key=f'inc_rec_verifier_{st.session_state.incident_record_counter}'
     )
     causing_verifier_id = selected_verifier['id'] if selected_verifier else None
-    incidents = get_incidents()
-    if not incidents:
-        st.warning('No hay incidencias disponibles. Por favor, registre una primero.')
+    try:
+        incidents = get_incidents()
+        if not incidents:
+            st.warning('No hay incidencias disponibles. Por favor, registre una primero.')
+            st.info('💡 Puede registrar una incidencia desde el menú "Altas" → "Alta Incidencia"')
+            return
+    except Exception as e:
+        st.error(f'Error al cargar incidencias: {e}')
+        st.info('💡 Verifique la conexión a la base de datos')
         return
     incident_id = st.selectbox('Incidencia', options=incidents, format_func=lambda x: x[1], key=f'inc_rec_incident_{st.session_state.incident_record_counter}')[0]
     # Agregar opción en blanco para coordinador asignado
@@ -327,11 +351,14 @@ def incident_record_form():
             missing_fields.append('Responsable')
         
         if not missing_fields:
-            insert_incident_record(date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, enlace, status, responsible)
-            st.success('Registro de incidencia guardado exitosamente.')
-            # Incrementar contador para limpiar formulario
-            st.session_state.incident_record_counter += 1
-            st.rerun()
+            success = insert_incident_record(date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, enlace, status, responsible)
+            if success:
+                st.success('Registro de incidencia guardado exitosamente.')
+                # Incrementar contador para limpiar formulario
+                st.session_state.incident_record_counter += 1
+                st.rerun()
+            else:
+                st.error('Error al guardar el registro de incidencia. Por favor, verifique la conexión a la base de datos e intente nuevamente.')
         else:
             st.error(f'Por favor, complete los siguientes campos obligatorios: {", ".join(missing_fields)}')
 
@@ -346,13 +373,12 @@ def manage_incident_actions_form():
         st.session_state.selected_incident_record_id = None
     
     # Preservar el contexto de navegación para evitar redirección al dashboard
-    if 'in_manage_actions' not in st.session_state:
-        st.session_state.in_manage_actions = True
+    st.session_state.in_manage_actions = True
+    st.session_state.force_stay_in_actions = True
     
-    # Asegurar que permanecemos en la sección correcta
-    if st.session_state.get('in_manage_actions', False):
-        st.session_state['main_menu_override'] = 'Incidencias'
-        st.session_state['sub_menu_override'] = 'Gestión de Acciones'
+    # Asegurar que permanecemos en la sección correcta siempre
+    st.session_state['main_menu_override'] = 'Incidencias'
+    st.session_state['sub_menu_override'] = 'Gestión de Acciones'
     
     # Mostrar indicador si se están cargando muchos datos
     if st.session_state.get('loading_large_dataset', False):
@@ -361,9 +387,15 @@ def manage_incident_actions_form():
             time.sleep(0.5)  # Breve pausa para mostrar el spinner
         st.session_state['loading_large_dataset'] = False
     
-    incident_records = get_incident_records()
-    if not incident_records:
-        st.warning('No hay registros de incidencias disponibles. Por favor, registre uno primero.')
+    try:
+        incident_records = get_incident_records()
+        if not incident_records:
+            st.warning('No hay registros de incidencias disponibles. Por favor, registre uno primero.')
+            st.info('💡 Puede registrar una incidencia desde el menú "Incidencias" → "Registro de Incidencia"')
+            return
+    except Exception as e:
+        st.error(f'Error al cargar registros de incidencias: {e}')
+        st.info('💡 Verifique la conexión a la base de datos')
         return
     
     # Encontrar el índice del registro previamente seleccionado
@@ -392,15 +424,6 @@ def manage_incident_actions_form():
         if st.button('🔄 Cambiar Registro', help='Permite seleccionar otro registro de incidencia'):
             st.session_state.selected_incident_record_id = None
             st.session_state.incident_actions_counter += 1
-            # Mantener el contexto de gestión de acciones activo
-            st.session_state.in_manage_actions = True
-            st.session_state['force_stay_in_actions'] = True
-            # Mantener la navegación en la sección actual
-            st.session_state['main_menu_override'] = 'Incidencias'
-            st.session_state['sub_menu_override'] = 'Gestión de Acciones'
-            # Usar un delay mínimo antes del rerun para evitar problemas con muchos datos
-            import time
-            time.sleep(0.1)
             st.rerun()
     
     # Mostrar información original de la incidencia
@@ -439,28 +462,29 @@ def manage_incident_actions_form():
     action_date = st.date_input('Fecha de la Acción', datetime.date.today(), key=f'inc_act_date_{st.session_state.incident_actions_counter}', help='Fecha en que se realizó la acción')
     action_description = st.text_area('Descripción de la Acción', key=f'inc_act_desc_{st.session_state.incident_actions_counter}', help='Describa la acción tomada')
     new_status = st.selectbox('Nuevo Status (opcional)', [None, 'Pendiente', 'En Proceso', 'Solucionado', 'Asignado a Técnicos', 'RRHH'], index=0, key=f'inc_act_status_{st.session_state.incident_actions_counter}', help='Actualice el estado si es necesario')
-    coordinators = get_coordinators()
-    performed_by = st.selectbox('Realizado por', options=coordinators, format_func=lambda x: f"{x['name']} {x['surnames']}", key=f'inc_act_by_{st.session_state.incident_actions_counter}')['id']
+    try:
+        coordinators = get_coordinators()
+        if not coordinators:
+            st.error('No hay coordinadores disponibles para asignar la acción.')
+            return
+        selected_coordinator = st.selectbox('Realizado por', options=coordinators, format_func=lambda x: f"{x['name']} {x['surnames']}", key=f'inc_act_by_{st.session_state.incident_actions_counter}')
+        performed_by = selected_coordinator['id']  # Enviar el ID del coordinador, no el nombre
+    except Exception as e:
+        st.error(f'Error al cargar coordinadores: {e}')
+        return
     if st.button('Guardar Acción'):
         if action_date and action_description and performed_by:
             # Mostrar indicador de carga para operaciones con muchos datos
             with st.spinner('Guardando acción... Por favor espere.'):
-                insert_incident_action(incident_record_id, action_date, action_description, new_status, performed_by)
+                success = insert_incident_action(incident_record_id, action_date, action_description, new_status, performed_by)
             
-            st.success('Acción guardada exitosamente.')
-            # Incrementar contador para limpiar formulario
-            st.session_state.incident_actions_counter += 1
-            # Forzar permanencia en la sección de gestión de acciones
-            st.session_state.in_manage_actions = True
-            st.session_state['force_stay_in_actions'] = True
-            st.session_state['loading_large_dataset'] = True
-            # Mantener el contexto de navegación después de guardar
-            st.session_state['main_menu_override'] = 'Incidencias'
-            st.session_state['sub_menu_override'] = 'Gestión de Acciones'
-            # Usar un delay mínimo antes del rerun para evitar problemas con muchos datos
-            import time
-            time.sleep(0.1)
-            st.rerun()
+            if success:
+                st.success('Acción guardada exitosamente.')
+                # Incrementar contador para limpiar formulario
+                st.session_state.incident_actions_counter += 1
+                st.rerun()
+            else:
+                st.error('Error al guardar la acción. Por favor, inténtelo de nuevo.')
         else:
             st.error('Por favor, complete fecha, descripción y realizado por.')
 
@@ -468,9 +492,13 @@ def manage_incident_actions_form():
 def edit_coordinator_form():
     st.subheader('Editar Coordinador')
     
-    coordinators = get_coordinators()
-    if not coordinators:
-        st.warning('No hay coordinadores registrados.')
+    try:
+        coordinators = get_coordinators()
+        if not coordinators:
+            st.warning('No hay coordinadores registrados.')
+            return
+    except Exception as e:
+        st.error(f'Error al cargar coordinadores: {e}')
         return
     
     # Selector de coordinador
@@ -665,8 +693,15 @@ def edit_incident_record_form():
                 new_incident_id = incident_options[selected_incident_key]
                 
                 # Coordinador asignado
-                coordinators = get_coordinators()
-                coordinator_options = {f"{c['name']} {c['surnames']}": c['id'] for c in coordinators}
+                try:
+                    coordinators = get_coordinators()
+                    if not coordinators:
+                        st.error('No hay coordinadores disponibles.')
+                        return
+                    coordinator_options = {f"{c['name']} {c['surnames']}": c['id'] for c in coordinators}
+                except Exception as e:
+                    st.error(f'Error al cargar coordinadores: {e}')
+                    return
                 current_coordinator = record_data['assigned_coordinator']
                 coordinator_index = list(coordinator_options.keys()).index(current_coordinator) if current_coordinator in coordinator_options else 0
                 selected_coordinator_key = st.selectbox('Coordinador Asignado', options=list(coordinator_options.keys()), index=coordinator_index)
@@ -685,6 +720,14 @@ def edit_incident_record_form():
             # Explicación
             new_explanation = st.text_area('Explicación', value=record_data['explanation'], help='Explique los detalles de la incidencia')
             
+            # Enlace
+            new_enlace = st.text_input('Enlace (opcional)', value=record_data.get('enlace', ''), help='URL relacionada con la incidencia (opcional)', placeholder='https://ejemplo.com')
+            
+            # Mostrar enlace actual como hipervínculo si existe
+            current_enlace = record_data.get('enlace', '')
+            if current_enlace and current_enlace.strip():
+                st.write(f"**Enlace actual:** [{current_enlace}]({current_enlace})")
+            
             # Botón de actualización
             if st.button('Actualizar Registro de Incidencia', type='primary'):
                 if new_explanation and len(new_explanation.strip()) >= 10:
@@ -699,6 +742,7 @@ def edit_incident_record_form():
                         new_incident_id,
                         new_assigned_coordinator_id,
                         new_explanation.strip(),
+                        new_enlace.strip() if new_enlace else '',
                         new_status,
                         new_responsible
                     ):

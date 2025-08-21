@@ -201,11 +201,16 @@ else:
             del st.session_state['in_manage_actions']
         else:
             # Si hay fuerza para permanecer, redirigir de vuelta a Incidencias
-            # PERO no si estamos en búsqueda por código
-            if not st.session_state.get('in_search_mode', False):
+            # PERO no si estamos en búsqueda por código O si el usuario seleccionó Dashboard explícitamente
+            if not st.session_state.get('in_search_mode', False) and main_selected != "Dashboard":
                 main_selected = "Incidencias"
-                st.session_state['main_menu_override'] = 'Incidencias'
-                st.session_state['sub_menu_override'] = 'Gestión de Acciones'
+            elif main_selected == "Dashboard":
+                # Limpiar todas las variables de fuerza si el usuario va al Dashboard
+                if 'force_stay_in_actions' in st.session_state:
+                    del st.session_state['force_stay_in_actions']
+                if 'in_manage_actions' in st.session_state:
+                    del st.session_state['in_manage_actions']
+                # No establecer overrides cuando el usuario explícitamente va al Dashboard
     
     if main_selected == "Dashboard":
         dashboard_main()
