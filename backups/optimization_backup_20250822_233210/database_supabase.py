@@ -2,7 +2,6 @@ import pandas as pd
 import os
 import logging
 import datetime
-import streamlit as st
 from supabase_config import get_supabase_client, test_connection
 from .backup_restore import backup_db
 try:
@@ -189,7 +188,6 @@ def insert_incident(description, custom_code=None):
         logger.error(f"Error inserting incident: {e}")
         return {'success': False, 'error': f'Error al guardar la incidencia: {str(e)}'}
 
-@st.cache_data(ttl=600)  # Cache por 10 minutos (datos estáticos)
 def get_coordinators():
     try:
         client = get_supabase_connection()
@@ -345,7 +343,6 @@ def get_incident_actions(incident_record_id):
         logger.error(f"Error getting incident actions: {e}")
         return []
 
-@st.cache_data(ttl=300)  # Cache por 5 minutos
 def get_all_incident_records_df():
     try:
         client = get_supabase_connection()
@@ -390,7 +387,6 @@ def get_all_incident_records_df():
         logger.error(f"Error getting incident records dataframe: {e}")
         return pd.DataFrame()
 
-@st.cache_data(ttl=600)  # Cache por 10 minutos (datos menos frecuentes)
 def get_all_verifiers_df():
     try:
         client = get_supabase_connection()
@@ -400,7 +396,6 @@ def get_all_verifiers_df():
         logger.error(f"Error getting verifiers dataframe: {e}")
         return pd.DataFrame()
 
-@st.cache_data(ttl=600)  # Cache por 10 minutos (datos menos frecuentes)
 def get_all_warehouses_df():
     try:
         client = get_supabase_connection()
@@ -410,42 +405,36 @@ def get_all_warehouses_df():
         logger.error(f"Error getting warehouses dataframe: {e}")
         return pd.DataFrame()
 
-@st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_zone():
     df = get_all_incident_records_df()
     if not df.empty:
         return df.groupby('Zona Bodega').size().reset_index(name='count')
     return pd.DataFrame()
 
-@st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_verifier():
     df = get_all_incident_records_df()
     if not df.empty:
         return df.groupby('Verificador Causante').size().reset_index(name='count')
     return pd.DataFrame()
 
-@st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_warehouse():
     df = get_all_incident_records_df()
     if not df.empty:
         return df.groupby('Bodega').size().reset_index(name='count')
     return pd.DataFrame()
 
-@st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_type():
     df = get_all_incident_records_df()
     if not df.empty:
         return df.groupby('Tipo de Incidencia').size().reset_index(name='count')
     return pd.DataFrame()
 
-@st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_status():
     df = get_all_incident_records_df()
     if not df.empty:
         return df.groupby('Estado').size().reset_index(name='count')
     return pd.DataFrame()
 
-@st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_assignments_by_verifier():
     df = get_all_incident_records_df()
     if not df.empty:
@@ -636,7 +625,6 @@ def create_backup():
         logger.error(f"Error creating backup: {e}")
         raise e
 
-@st.cache_data(ttl=180)  # Cache por 3 minutos
 def get_dashboard_stats():
     """Obtiene estadísticas para el dashboard"""
     try:
@@ -657,16 +645,12 @@ def get_dashboard_stats():
         resolved_result = client.table('incident_records').select('count', count='exact').eq('status', 'Solucionado').execute()
         stats['resolved_incidents'] = resolved_result.count if resolved_result.count else 0
         
-        # Incidencias por estado (optimizado - sin cargar dataset completo)
-        try:
-            status_result = client.table('incident_records').select('status').execute()
-            if status_result.data:
-                status_df = pd.DataFrame(status_result.data)
-                stats['by_status'] = status_df.groupby('status').size().reset_index(name='count')
-            else:
-                stats['by_status'] = pd.DataFrame()
-        except Exception as e:
-            logger.warning(f"Error getting status stats: {e}")
+        # Incidencias por estado
+        df = get_all_incident_records_df()
+        if not df.empty:
+            stats['by_status'] = df.groupby('Estado').size().reset_index(name='count')
+            stats['by_status'].rename(columns={'Estado': 'status'}, inplace=True)
+        else:
             stats['by_status'] = pd.DataFrame()
         
         # Incidencias recientes (últimos 7 días)
@@ -686,7 +670,6 @@ def get_dashboard_stats():
             'recent_incidents': 0
         }
 
-@st.cache_data(ttl=120)  # Cache por 2 minutos
 def get_pending_incidents_summary():
     """Obtiene resumen de incidencias pendientes para el dashboard"""
     try:
@@ -753,7 +736,6 @@ def get_pending_incidents_summary():
         logger.error(f"Error getting pending incidents summary: {e}")
         return pd.DataFrame()
 
-@st.cache_data(ttl=120)  # Cache por 2 minutos
 def get_recent_actions():
     """Obtiene las acciones más recientes para el dashboard"""
     try:
@@ -976,7 +958,6 @@ def get_incident_by_id(incident_id):
         logger.error(f"Error getting incident: {e}")
         return None
 
-@st.cache_data(ttl=180)  # Cache por 3 minutos
 def get_pending_incidents_by_coordinator(coordinator_id=None):
     """Obtiene incidencias pendientes filtradas por coordinador asignado"""
     try:
@@ -1057,7 +1038,6 @@ def get_pending_incidents_by_coordinator(coordinator_id=None):
         logger.error(f"Error getting pending incidents by coordinator: {e}")
         return pd.DataFrame()
 
-@st.cache_data(ttl=120)  # Cache por 2 minutos para datos dinámicos
 def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
     """Obtiene incidencias pendientes con filtros múltiples"""
     try:
