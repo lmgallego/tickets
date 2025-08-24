@@ -12,14 +12,22 @@ def coordinator_form():
     name = st.text_input('Nombre', key=f'coord_name_{st.session_state.coord_form_counter}', help='Ingrese un nombre válido (mínimo 2 caracteres)')
     surnames = st.text_input('Apellidos', key=f'coord_surnames_{st.session_state.coord_form_counter}', help='Ingrese apellidos válidos (mínimo 2 caracteres)')
     
-    if st.button('Guardar Coordinador'):
-        if name and len(name) >= 2 and surnames and len(surnames) >= 2:
-            insert_coordinator(name, surnames)
-            st.success('Coordinador guardado exitosamente.')
-            st.session_state.coord_form_counter += 1
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button('Guardar Coordinador', use_container_width=True):
+            if name and len(name) >= 2 and surnames and len(surnames) >= 2:
+                insert_coordinator(name, surnames)
+                st.success('Coordinador guardado exitosamente.')
+                st.session_state.coord_form_counter += 1
+                st.rerun()
+            else:
+                st.error('Por favor, complete todos los campos con valores válidos (mínimo 2 caracteres cada uno).')
+    
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='coord_dashboard_btn', use_container_width=True):
+            st.session_state.main_menu_override = 'Dashboard'
             st.rerun()
-        else:
-            st.error('Por favor, complete todos los campos con valores válidos (mínimo 2 caracteres cada uno).')
 
 def verifier_form():
     st.subheader('Alta de Verificador')
@@ -33,14 +41,22 @@ def verifier_form():
     zones = ['PENEDÈS', 'ALT CAMP', 'CONCA DE BARBERÀ', 'ALMENDRALEJO', 'REQUENA', 'CARIÑENA']
     zone = st.selectbox('Zona', options=zones, key=f'verif_zone_{st.session_state.verif_form_counter}')
     
-    if st.button('Guardar Verificador'):
-        if name and len(name) >= 2 and surnames and len(surnames) >= 2 and (phone.isdigit() and len(phone) == 9 or not phone):
-            insert_verifier(name, surnames, phone, zone)
-            st.success('Verificador guardado exitosamente.')
-            st.session_state.verif_form_counter += 1
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button('Guardar Verificador', use_container_width=True):
+            if name and len(name) >= 2 and surnames and len(surnames) >= 2 and (phone.isdigit() and len(phone) == 9 or not phone):
+                insert_verifier(name, surnames, phone, zone)
+                st.success('Verificador guardado exitosamente.')
+                st.session_state.verif_form_counter += 1
+                st.rerun()
+            else:
+                st.error('Por favor, complete nombre y apellidos con mínimo 2 caracteres, y teléfono con 9 dígitos si se proporciona.')
+    
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='verif_dashboard_btn', use_container_width=True):
+            st.session_state.main_menu_override = 'Dashboard'
             st.rerun()
-        else:
-            st.error('Por favor, complete nombre y apellidos con mínimo 2 caracteres, y teléfono con 9 dígitos si se proporciona.')
 
 def warehouse_form():
     st.subheader('Alta de Bodega')
@@ -52,14 +68,23 @@ def warehouse_form():
     codigo_consejo = st.text_input('Código Consejo', key=f'wh_codigo_{st.session_state.warehouse_form_counter}', help='Código del consejo regulador')
     zones = ['PENEDÈS', 'ALT CAMP', 'CONCA DE BARBERÀ', 'ALMENDRALEJO', 'REQUENA', 'CARIÑENA']
     zone = st.selectbox('Zona', options=zones, key=f'wh_zone_{st.session_state.warehouse_form_counter}')
-    if st.button('Guardar Bodega'):
-        if name:
-            insert_warehouse(name, codigo_consejo, zone)
-            st.success('Bodega guardada exitosamente.')
-            st.session_state.warehouse_form_counter += 1
+    
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button('Guardar Bodega', use_container_width=True):
+            if name:
+                insert_warehouse(name, codigo_consejo, zone)
+                st.success('Bodega guardada exitosamente.')
+                st.session_state.warehouse_form_counter += 1
+                st.rerun()
+            else:
+                st.error('Por favor, complete el nombre de la bodega.')
+    
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='warehouse_dashboard_btn', use_container_width=True):
+            st.session_state.main_menu_override = 'Dashboard'
             st.rerun()
-        else:
-            st.error('Por favor, complete el nombre de la bodega.')
 
 def csv_upload(section):
     st.subheader(f'Carga de {section} desde CSV')
@@ -143,27 +168,35 @@ def incident_form():
     # Campo para descripción detallada
     description = st.text_area('Descripción Detallada de la Incidencia', key=f'inc_description_{st.session_state.incident_form_counter}', help='Proporcione una descripción detallada y completa de la incidencia (mínimo 10 caracteres)')
     
-    if st.button('Guardar Incidencia'):
-        if incident_type and len(incident_type.strip()) >= 3 and description and len(description) >= 10:
-            if not auto_code and (not custom_code or len(custom_code.strip()) < 3):
-                st.error('Por favor, ingrese un código válido de al menos 3 caracteres o active la generación automática.')
-            else:
-                code_to_use = custom_code.strip() if not auto_code else None
-                # Combinar tipo y descripción para el campo description
-                full_description = f"{incident_type.strip()} - {description.strip()}"
-                result = insert_incident(full_description, code_to_use)
-                if result['success']:
-                    st.success(f'Incidencia guardada exitosamente con código: **{result["code"]}**')
-                    st.info(f'Tipo: {incident_type.strip()}')
-                    st.session_state.incident_form_counter += 1
-                    st.rerun()
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button('Guardar Incidencia', use_container_width=True):
+            if incident_type and len(incident_type.strip()) >= 3 and description and len(description) >= 10:
+                if not auto_code and (not custom_code or len(custom_code.strip()) < 3):
+                    st.error('Por favor, ingrese un código válido de al menos 3 caracteres o active la generación automática.')
                 else:
-                    st.error(result['error'])
-        else:
-            if not incident_type or len(incident_type.strip()) < 3:
-                st.error('Por favor, ingrese un tipo de incidencia con al menos 3 caracteres.')
-            if not description or len(description) < 10:
-                st.error('Por favor, ingrese una descripción detallada con al menos 10 caracteres.')
+                    code_to_use = custom_code.strip() if not auto_code else None
+                    # Combinar tipo y descripción para el campo description
+                    full_description = f"{incident_type.strip()} - {description.strip()}"
+                    result = insert_incident(full_description, code_to_use)
+                    if result['success']:
+                        st.success(f'Incidencia guardada exitosamente con código: **{result["code"]}**')
+                        st.info(f'Tipo: {incident_type.strip()}')
+                        st.session_state.incident_form_counter += 1
+                        st.rerun()
+                    else:
+                        st.error(result['error'])
+            else:
+                if not incident_type or len(incident_type.strip()) < 3:
+                    st.error('Por favor, ingrese un tipo de incidencia con al menos 3 caracteres.')
+                if not description or len(description) < 10:
+                    st.error('Por favor, ingrese una descripción detallada con al menos 10 caracteres.')
+    
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='incident_dashboard_btn', use_container_width=True):
+            st.session_state.main_menu_override = 'Dashboard'
+            st.rerun()
 
 def search_incident_form():
     """Formulario para buscar incidencias por código"""
@@ -219,7 +252,7 @@ def search_incident_form():
                             st.write(f"**Fecha:** {record['date']}")
                             st.write(f"**Almacén:** {record['warehouse']} - {record['warehouse_zone']}")
                             st.write(f"**Estado:** {record['status']}")
-                            st.write(f"**Tipo:** {record['incident_type']}")
+                            st.write(f"**Tipo:** {record['incident_description']}")
                         
                         with col2:
                             st.write(f"**Coordinador Registrante:** {record['registering_coordinator']}")
@@ -240,6 +273,12 @@ def search_incident_form():
                 
         else:
             st.error(f"❌ {incident_result['error']}")
+    
+    # Botón Dashboard al final
+    st.markdown("---")
+    if st.button('🏠 Volver al Dashboard', key='search_incident_dashboard_btn', use_container_width=True):
+        st.session_state.main_menu_override = 'Dashboard'
+        st.rerun()
 
 def incident_record_form():
     st.subheader('Registro de Incidencia')
@@ -332,7 +371,18 @@ def incident_record_form():
     enlace = st.text_input('Enlace (opcional)', key=f'inc_rec_enlace_{st.session_state.incident_record_counter}', help='URL relacionada con la incidencia (opcional)', placeholder='https://ejemplo.com')
     status = st.selectbox('Status', ['Pendiente', 'En Proceso', 'Solucionado', 'Asignado a Técnicos', 'RRHH'], key=f'inc_rec_status_{st.session_state.incident_record_counter}', help='Seleccione el estado actual')
     responsible = st.selectbox('Responsable', ['Bodega', 'Verificador', 'RRHH', 'Coordinacion', 'Servicios Informáticos'], key=f'inc_rec_responsible_{st.session_state.incident_record_counter}', help='Indique quién es responsable')
-    if st.button('Guardar Registro de Incidencia'):
+    # Botones en la misma fila
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        save_button = st.button('Guardar Registro de Incidencia')
+    with col2:
+        manage_incident_button = st.button('⚡ Gestionar Incidencia', key='manage_incident_btn')
+    with col3:
+        if st.button('🏠 Volver al Dashboard', key='incident_record_dashboard_btn'):
+            st.session_state.main_menu_override = 'Dashboard'
+            st.rerun()
+    
+    if save_button:
         # Validar que todos los campos obligatorios estén completos
         missing_fields = []
         if not registering_coordinator_id:
@@ -351,16 +401,29 @@ def incident_record_form():
             missing_fields.append('Responsable')
         
         if not missing_fields:
-            success = insert_incident_record(date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, enlace, status, responsible)
-            if success:
+            result = insert_incident_record(date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, enlace, status, responsible)
+            if result['success']:
                 st.success('Registro de incidencia guardado exitosamente.')
+                # Guardar el ID del registro recién creado para el botón "Gestionar Incidencia"
+                st.session_state.last_created_record_id = result['record_id']
                 # Incrementar contador para limpiar formulario
                 st.session_state.incident_record_counter += 1
                 st.rerun()
             else:
-                st.error('Error al guardar el registro de incidencia. Por favor, verifique la conexión a la base de datos e intente nuevamente.')
+                st.error(f'Error al guardar el registro de incidencia: {result.get("error", "Error desconocido")}')
         else:
             st.error(f'Por favor, complete los siguientes campos obligatorios: {", ".join(missing_fields)}')
+    
+    # Lógica del botón "Gestionar Incidencia"
+    if manage_incident_button:
+        if hasattr(st.session_state, 'last_created_record_id') and st.session_state.last_created_record_id:
+            # Configurar el registro seleccionado para gestión de acciones
+            st.session_state.selected_incident_record_id = st.session_state.last_created_record_id
+            st.session_state.main_menu_override = 'Incidencias'
+            st.session_state.incident_submenu = 'Gestión de Acciones'
+            st.rerun()
+        else:
+            st.warning('⚠️ Primero debe guardar el registro de incidencia para poder gestionarlo.')
 
 def manage_incident_actions_form():
     st.subheader('Gestión de Acciones de Incidencia')
@@ -472,7 +535,16 @@ def manage_incident_actions_form():
     except Exception as e:
         st.error(f'Error al cargar coordinadores: {e}')
         return
-    if st.button('Guardar Acción'):
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        save_action_button = st.button('Guardar Acción')
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='manage_actions_dashboard_btn'):
+            st.session_state.main_menu_override = 'Dashboard'
+            st.rerun()
+    
+    if save_action_button:
         if action_date and action_description and performed_by:
             # Mostrar indicador de carga para operaciones con muchos datos
             with st.spinner('Guardando acción... Por favor espere.'):

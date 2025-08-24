@@ -238,7 +238,6 @@ def insert_incident_record(date, registering_coordinator_id, warehouse_id, causi
         # Convertir fecha a string si es necesario
         date_str = date.isoformat() if hasattr(date, 'isoformat') else str(date)
         
-        # Temporalmente excluir 'enlace' hasta que se agregue la columna en Supabase
         result = client.table('incident_records').insert({
             'date': date_str,
             'registering_coordinator_id': registering_coordinator_id,
@@ -247,22 +246,27 @@ def insert_incident_record(date, registering_coordinator_id, warehouse_id, causi
             'incident_id': incident_id,
             'assigned_coordinator_id': assigned_coordinator_id,
             'explanation': explanation,
-            # 'enlace': enlace,  # Comentado temporalmente - columna no existe en Supabase
+            'enlace': enlace,
             'status': status,
             'responsible': responsible
         }).execute()
-        logger.info(f"Inserted incident record on date {date_str}")
-        return True
+        
+        if result.data and len(result.data) > 0:
+            record_id = result.data[0]['id']
+            logger.info(f"Inserted incident record with ID {record_id} on date {date_str}")
+            return {'success': True, 'record_id': record_id}
+        else:
+            logger.error("No data returned from insert operation")
+            return {'success': False, 'error': 'No se pudo obtener el ID del registro creado'}
     except Exception as e:
         logger.error(f"Error inserting incident record: {e}")
-        return False
+        return {'success': False, 'error': str(e)}
 
 def get_incident_records():
     try:
         client = get_supabase_connection()
-        # Temporalmente excluir 'enlace' de la consulta hasta que se agregue la columna en Supabase
         result = client.table('incident_records').select(
-            'id, date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, status, responsible'
+            'id, date, registering_coordinator_id, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id, explanation, enlace, status, responsible'
         ).order('date', desc=True).execute()
         
         # Obtener datos relacionados por separado para evitar conflictos
@@ -297,11 +301,24 @@ def insert_incident_action(incident_record_id, action_date, action_description, 
     try:
         client = get_supabase_connection()
         
-        # Convertir la fecha a string si es necesario
+        # Convertir la fecha a string con timestamp completo
         if hasattr(action_date, 'strftime'):
-            action_date_str = action_date.strftime('%Y-%m-%d')
+            # Si es solo una fecha, agregar la hora actual
+            current_time = datetime.datetime.now().time()
+            if isinstance(action_date, datetime.date) and not isinstance(action_date, datetime.datetime):
+                action_datetime = datetime.datetime.combine(action_date, current_time)
+                action_date_str = action_datetime.strftime('%Y-%m-%d %H:%M:%S')
+            else:
+                action_date_str = action_date.strftime('%Y-%m-%d %H:%M:%S')
         else:
-            action_date_str = str(action_date)
+            # Si es string, intentar parsearlo y agregar hora si no la tiene
+            try:
+                parsed_date = datetime.datetime.strptime(str(action_date), '%Y-%m-%d')
+                current_time = datetime.datetime.now().time()
+                action_datetime = datetime.datetime.combine(parsed_date.date(), current_time)
+                action_date_str = action_datetime.strftime('%Y-%m-%d %H:%M:%S')
+            except:
+                action_date_str = str(action_date)
         
         # Insertar la acción
         result = client.table('incident_actions').insert({
@@ -369,19 +386,19 @@ def get_all_incident_records_df():
             assigned_coord = coordinators.get(row['assigned_coordinator_id'], {})
             
             processed_row = {
-                'ID': row['id'],
-                'Fecha': row['date'],
-                'Coordinador Registrante': f"{reg_coord.get('name', '')} {reg_coord.get('surnames', '')}" if reg_coord else "N/A",
-                'Bodega': warehouse.get('name', 'N/A'),
-                'Zona Bodega': warehouse.get('zone', 'N/A'),
-                'Verificador Causante': f"{verifier.get('name', '')} {verifier.get('surnames', '')}" if verifier else "N/A",
-                'Zona Verificador': verifier.get('zone', 'N/A'),
-                'Tipo de Incidencia': incident.get('description', 'N/A'),
-                'Coordinador Asignado': f"{assigned_coord.get('name', '')} {assigned_coord.get('surnames', '')}" if assigned_coord else "N/A",
-                'Explicación': row['explanation'],
-                'Enlace': '',  # Temporalmente vacío - columna no existe en Supabase
-                'Estado': row['status'],
-                'Responsable': row['responsible']
+                'id': row['id'],
+                'date': row['date'],
+                'registering_coordinator': f"{reg_coord.get('name', '')} {reg_coord.get('surnames', '')}" if reg_coord else "N/A",
+                'warehouse': warehouse.get('name', 'N/A'),
+                'warehouse_zone': warehouse.get('zone', 'N/A'),
+                'causing_verifier': f"{verifier.get('name', '')} {verifier.get('surnames', '')}" if verifier else "N/A",
+                'verifier_zone': verifier.get('zone', 'N/A'),
+                'incident_type': incident.get('description', 'N/A'),
+                'assigned_coordinator': f"{assigned_coord.get('name', '')} {assigned_coord.get('surnames', '')}" if assigned_coord else "N/A",
+                'explanation': row['explanation'],
+                'enlace': '',  # Temporalmente vacío - columna no existe en Supabase
+                'status': row['status'],
+                'responsible': row['responsible']
             }
             processed_data.append(processed_row)
         
@@ -414,42 +431,42 @@ def get_all_warehouses_df():
 def get_incidents_by_zone():
     df = get_all_incident_records_df()
     if not df.empty:
-        return df.groupby('Zona Bodega').size().reset_index(name='count')
+        return df.groupby('warehouse_zone').size().reset_index(name='count')
     return pd.DataFrame()
 
 @st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_verifier():
     df = get_all_incident_records_df()
     if not df.empty:
-        return df.groupby('Verificador Causante').size().reset_index(name='count')
+        return df.groupby('causing_verifier').size().reset_index(name='count')
     return pd.DataFrame()
 
 @st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_warehouse():
     df = get_all_incident_records_df()
     if not df.empty:
-        return df.groupby('Bodega').size().reset_index(name='count')
+        return df.groupby('warehouse').size().reset_index(name='count')
     return pd.DataFrame()
 
 @st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_type():
     df = get_all_incident_records_df()
     if not df.empty:
-        return df.groupby('Tipo de Incidencia').size().reset_index(name='count')
+        return df.groupby('incident_type').size().reset_index(name='count')
     return pd.DataFrame()
 
 @st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_incidents_by_status():
     df = get_all_incident_records_df()
     if not df.empty:
-        return df.groupby('Estado').size().reset_index(name='count')
+        return df.groupby('status').size().reset_index(name='count')
     return pd.DataFrame()
 
 @st.cache_data(ttl=240)  # Cache por 4 minutos
 def get_assignments_by_verifier():
     df = get_all_incident_records_df()
     if not df.empty:
-        return df[df['Responsable'] == 'Verificador'].groupby('Verificador Causante').size().reset_index(name='count')
+        return df[df['responsible'] == 'Verificador'].groupby('causing_verifier').size().reset_index(name='count')
     return pd.DataFrame()
 
 def reset_database():
@@ -754,28 +771,104 @@ def get_pending_incidents_summary():
         return pd.DataFrame()
 
 @st.cache_data(ttl=120)  # Cache por 2 minutos
-def get_recent_actions():
-    """Obtiene las acciones más recientes para el dashboard"""
+def get_recent_actions(limit=5):
+    """Obtiene las acciones más recientes para el dashboard con información de bodega"""
     try:
         client = get_supabase_connection()
         result = client.table('incident_actions').select(
             'action_date, action_description, new_status, performed_by, incident_record_id'
-        ).order('action_date', desc=True).limit(5).execute()
+        ).order('action_date', desc=True).limit(limit).execute()
         
         processed_data = []
         for row in result.data:
+            # Obtener información de la bodega para cada acción
+            warehouse_name = "N/A"
+            coordinator_name = "N/A"
+            
+            if row.get('incident_record_id'):
+                try:
+                    # Obtener el warehouse_id del incident_record
+                    incident_result = client.table('incident_records').select(
+                        'warehouse_id'
+                    ).eq('id', row['incident_record_id']).execute()
+                    
+                    if incident_result.data and incident_result.data[0].get('warehouse_id'):
+                        warehouse_id = incident_result.data[0]['warehouse_id']
+                        # Obtener el nombre de la bodega
+                        warehouse_result = client.table('warehouses').select(
+                            'name'
+                        ).eq('id', warehouse_id).execute()
+                        
+                        if warehouse_result.data:
+                            warehouse_name = warehouse_result.data[0]['name']
+                except Exception as e:
+                    logger.warning(f"Error getting warehouse for action: {e}")
+            
+            # Obtener el nombre del coordinador si performed_by es un ID numérico
+            if row.get('performed_by'):
+                try:
+                    # Verificar si performed_by es un ID numérico
+                    coordinator_id = int(row['performed_by'])
+                    coordinator_result = client.table('coordinators').select(
+                        'name, surnames'
+                    ).eq('id', coordinator_id).execute()
+                    
+                    if coordinator_result.data:
+                        coord_data = coordinator_result.data[0]
+                        coordinator_name = f"{coord_data.get('name', '')} {coord_data.get('surnames', '')}".strip()
+                    else:
+                        coordinator_name = row['performed_by']
+                except (ValueError, TypeError):
+                    # Si no es un ID numérico, usar el valor tal como está
+                    coordinator_name = row['performed_by']
+            
             processed_data.append({
                 'action_date': row['action_date'],
                 'action_description': row['action_description'],
                 'new_status': row['new_status'],
-                'performed_by': row['performed_by'] or "N/A",
+                'performed_by': coordinator_name,
                 'incident_id': row['incident_record_id'] or "N/A",
-                'warehouse': "N/A"  # Simplificado para evitar joins complejos
+                'warehouse': warehouse_name
             })
         
         return pd.DataFrame(processed_data)
     except Exception as e:
         logger.error(f"Error getting recent actions: {e}")
+        return pd.DataFrame()
+
+@st.cache_data(ttl=120)  # Cache por 2 minutos
+def get_recent_incidents():
+    """Obtiene las 5 incidencias más recientes registradas para el dashboard"""
+    try:
+        client = get_supabase_connection()
+        result = client.table('incident_records').select(
+            'id, date, status, responsible, '
+            'warehouses!incident_records_warehouse_id_fkey(name, zone), '
+            'incidents!incident_records_incident_id_fkey(code, description), '
+            'coordinators!incident_records_assigned_coordinator_id_fkey(name, surnames)'
+        ).order('date', desc=True).limit(5).execute()
+        
+        processed_data = []
+        for row in result.data:
+            warehouse = row.get('warehouses', {})
+            incident = row.get('incidents', {})
+            coordinator = row.get('coordinators', {})
+            
+            processed_data.append({
+                'id': row['id'],
+                'date': row['date'],
+                'incident_code': incident.get('code', 'N/A') if incident else 'N/A',
+                'incident_description': incident.get('description', 'N/A') if incident else 'N/A',
+                'warehouse': warehouse.get('name', 'N/A') if warehouse else 'N/A',
+                'warehouse_zone': warehouse.get('zone', 'N/A') if warehouse else 'N/A',
+                'status': row['status'],
+                'responsible': row['responsible'] or 'N/A',
+                'assigned_coordinator': f"{coordinator.get('name', '')} {coordinator.get('surnames', '')}" if coordinator else 'N/A'
+            })
+        
+        return pd.DataFrame(processed_data)
+    except Exception as e:
+        logger.error(f"Error getting recent incidents: {e}")
         return pd.DataFrame()
 
 def search_incident_by_code(code):
@@ -1085,7 +1178,10 @@ def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
             cutoff_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
             query = query.gte('date', cutoff_date)
         
-        result = query.order('date', desc=True).limit(20).execute()
+        # Si no se especifica coordinador (Todos los coordinadores), limitar a 5 incidencias
+        # Si se especifica un coordinador, mostrar todas sus incidencias
+        limit = 5 if coordinator_id is None else 20
+        result = query.order('date', desc=True).limit(limit).execute()
         
         processed_data = []
         for row in result.data:

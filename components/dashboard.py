@@ -183,22 +183,46 @@ def dashboard_main():
         else:
             st.info("No hay datos para mostrar")
         
-        # Acciones recientes
+        # Acciones recientes en desplegable
         st.subheader("🔄 Acciones Recientes")
         
         if recent_actions.empty:
             st.info("No hay acciones recientes")
         else:
-            for idx, action in recent_actions.iterrows():
-                with st.container():
-                    st.markdown(f"""
-                    **📅 {action['action_date']}**  
-                    🏢 {action['warehouse']} (ID: {action['incident_id']})  
-                    👤 {action['performed_by']}  
-                    📝 {action['action_description'][:50]}{'...' if len(action['action_description']) > 50 else ''}  
-                    {f"➡️ {action['new_status']}" if pd.notna(action['new_status']) else ""}
-                    """)
-                    st.markdown("---")
+            # Obtener todas las acciones para el desplegable
+            try:
+                all_recent_actions = get_recent_actions(limit=50)  # Obtener hasta 50 acciones
+            except:
+                all_recent_actions = recent_actions
+            
+            with st.expander(f"📋 Ver todas las acciones ({len(all_recent_actions)} disponibles)", expanded=False):
+                if all_recent_actions.empty:
+                    st.info("No hay acciones disponibles")
+                else:
+                    for idx, action in all_recent_actions.iterrows():
+                        with st.container():
+                            # Formatear fecha
+                            try:
+                                formatted_date = pd.to_datetime(action['action_date']).strftime('%d/%m/%Y %H:%M')
+                            except:
+                                formatted_date = action['action_date']
+                            
+                            # Crear un diseño más limpio
+                            col_date, col_content = st.columns([1, 3])
+                            
+                            with col_date:
+                                st.markdown(f"**📅 {formatted_date}**")
+                                st.markdown(f"🏢 {action['warehouse']}")
+                            
+                            with col_content:
+                                st.markdown(f"**ID:** {action['incident_id']} | **Por:** {action['performed_by']}")
+                                st.markdown(f"📝 {action['action_description']}")
+                                if pd.notna(action['new_status']) and action['new_status']:
+                                    st.markdown(f"➡️ **Estado:** {action['new_status']}")
+                            
+                            st.markdown("---")
+        
+
     
     # Sección de accesos rápidos
     st.markdown("---")

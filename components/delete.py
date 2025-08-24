@@ -5,10 +5,21 @@ from utils.backup_restore import restore_db
 
 def delete_test_data_form():
     st.subheader("Borrar Datos de Prueba")
+    
     st.warning("Esta acción borrará todos los datos de la base de datos. Úsala solo para pruebas.")
     access_code = st.text_input("Código de Acceso", type="password")
     confirm = st.checkbox("Confirmo que deseo borrar todos los datos")
-    if st.button("Borrar Datos", disabled=not confirm):
+    
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        delete_button = st.button("Borrar Datos", disabled=not confirm)
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='delete_data_dashboard_btn'):
+            st.session_state.main_menu_override = 'Dashboard'
+            st.rerun()
+    
+    if delete_button:
         if access_code == "197569":
             reset_database()
             st.success("Datos de prueba borrados exitosamente.")
@@ -17,9 +28,19 @@ def delete_test_data_form():
 
 def backup_database_form():
     st.subheader("Copia de Seguridad de la Base de Datos")
+    
     st.info("Crea una copia de seguridad de toda la base de datos.")
     
-    if st.button("Crear Copia de Seguridad"):
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        backup_button = st.button("Crear Copia de Seguridad")
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='backup_dashboard_btn'):
+            st.session_state.main_menu_override = 'Dashboard'
+            st.rerun()
+    
+    if backup_button:
         try:
             backup_path = create_backup()
             st.success(f"Copia de seguridad creada exitosamente: {backup_path}")
@@ -38,9 +59,19 @@ def backup_database_form():
 
 def export_excel_form():
     st.subheader("Exportar Historial a Excel")
+    
     st.info("Exporta el historial completo de incidencias y acciones a un archivo Excel.")
     
-    if st.button("Exportar a Excel"):
+    # Botones en la misma fila
+    col1, col2 = st.columns(2)
+    with col1:
+        export_button = st.button("Exportar a Excel")
+    with col2:
+        if st.button('🏠 Volver al Dashboard', key='export_excel_dashboard_btn'):
+            st.session_state.main_menu_override = 'Dashboard'
+            st.rerun()
+    
+    if export_button:
         try:
             with st.spinner("Generando archivo Excel..."):
                 filename = export_incidents_to_excel()
@@ -79,6 +110,7 @@ def export_excel_form():
 
 def restore_database_form():
     st.subheader("Restaurar Copia de Seguridad")
+    
     st.warning("Esta acción reemplazará completamente la base de datos actual. Asegúrate de hacer una copia de seguridad antes de proceder.")
     
     uploaded_file = st.file_uploader(
@@ -94,7 +126,16 @@ def restore_database_form():
         access_code = st.text_input("Código de Acceso para Restauración", type="password")
         confirm_restore = st.checkbox("Confirmo que deseo restaurar la base de datos y reemplazar todos los datos actuales")
         
-        if st.button("Restaurar Base de Datos", disabled=not confirm_restore):
+        # Botones en la misma fila
+        col1, col2 = st.columns(2)
+        with col1:
+            restore_button = st.button("Restaurar Base de Datos", disabled=not confirm_restore)
+        with col2:
+            if st.button('🏠 Volver al Dashboard', key='restore_dashboard_btn'):
+                st.session_state.main_menu_override = 'Dashboard'
+                st.rerun()
+        
+        if restore_button:
             if access_code == "197569":
                 try:
                     # Guardar el archivo temporalmente

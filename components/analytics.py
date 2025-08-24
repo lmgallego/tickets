@@ -98,29 +98,22 @@ def display_chart(title, df_getter, x_col, y_col='count'):
     if df.empty:
         st.warning('No hay datos disponibles.')
         return
-    # Mapeo amigable para tooltips
-    friendly_x = {
-        'warehouse_zone': 'Zona de Bodega',
-        'causing_verifier': 'Verificador Causante',
-        'warehouse': 'Bodega',
-        'incident_type': 'Tipo de Incidencia',
-        'status': 'Estado'
-    }.get(x_col, x_col)
+    # Las columnas ya vienen con nombres amigables desde database_supabase.py
     friendly_y = 'Cantidad'
     chart = alt.Chart(df).mark_bar().encode(
-        x=alt.X(x_col, sort='-y', title=friendly_x),
+        x=alt.X(x_col, sort='-y', title=x_col),
         y=alt.Y(y_col, title=friendly_y),
-        tooltip=[alt.Tooltip(x_col, title=friendly_x), alt.Tooltip(y_col, title=friendly_y)]
+        tooltip=[alt.Tooltip(x_col, title=x_col), alt.Tooltip(y_col, title=friendly_y)]
     ).interactive()
     st.altair_chart(chart, use_container_width=True)
 
 def analytics_incidents():
     display_filtered_table('Consulta de Incidencias', get_all_incident_records_df)
-    display_chart('Incidencias por Zona', get_incidents_by_zone, 'Zona Bodega')
-    display_chart('Incidencias por Verificador', get_incidents_by_verifier, 'Verificador Causante')
-    display_chart('Incidencias por Bodega', get_incidents_by_warehouse, 'Bodega')
-    display_chart('Incidencias por Tipo', get_incidents_by_type, 'Tipo de Incidencia')
-    display_chart('Incidencias por Status', get_incidents_by_status, 'Estado')
+    display_chart('Incidencias por Zona', get_incidents_by_zone, 'warehouse_zone')
+    display_chart('Incidencias por Verificador', get_incidents_by_verifier, 'causing_verifier')
+    display_chart('Incidencias por Bodega', get_incidents_by_warehouse, 'warehouse')
+    display_chart('Incidencias por Tipo', get_incidents_by_type, 'incident_type')
+    display_chart('Incidencias por Estado', get_incidents_by_status, 'status')
 
 def analytics_verifiers():
     display_filtered_table('Consulta de Verificadores', get_all_verifiers_df)

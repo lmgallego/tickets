@@ -128,14 +128,19 @@ else:
         elif dashboard_nav == 'new_incident_record':
             st.session_state['main_menu_override'] = 'Incidencias'
             st.session_state['sub_menu_override'] = 'Registro de Incidencia'
+            # Marcar que venimos desde acceso rápido para mantener contexto
+            st.session_state['from_quick_access'] = 'new_incident_record'
         elif dashboard_nav == 'new_incident_code':
             st.session_state['main_menu_override'] = 'Altas'
             st.session_state['sub_menu_override'] = 'Alta Incidencia'
+            st.session_state['from_quick_access'] = 'new_incident_code'
         elif dashboard_nav == 'analytics':
             st.session_state['main_menu_override'] = 'Consultas y Analítica'
+            st.session_state['from_quick_access'] = 'analytics'
         elif dashboard_nav == 'export':
             st.session_state['main_menu_override'] = 'Administración'
             st.session_state['sub_menu_override'] = 'Exportar a Excel'
+            st.session_state['from_quick_access'] = 'export'
     
     with st.sidebar:
         # Botón de logout en la parte superior con estilo personalizado
@@ -184,6 +189,17 @@ else:
             if override_menu in main_options:
                 default_idx = main_options.index(override_menu)
             del st.session_state['main_menu_override']
+        elif 'from_quick_access' in st.session_state:
+            # Mantener contexto de navegación desde acceso rápido
+            quick_access = st.session_state['from_quick_access']
+            if quick_access == 'new_incident_record':
+                default_idx = main_options.index('Incidencias')
+            elif quick_access == 'new_incident_code':
+                default_idx = main_options.index('Altas')
+            elif quick_access == 'analytics':
+                default_idx = main_options.index('Consultas y Analítica')
+            elif quick_access == 'export':
+                default_idx = main_options.index('Administración')
         
         main_selected = option_menu(
             menu_title="Menú Principal",
@@ -192,6 +208,16 @@ else:
             menu_icon="cast",
             default_index=default_idx,
         )
+    
+    # Limpiar contexto de acceso rápido si se navega manualmente a otro menú principal
+    if 'from_quick_access' in st.session_state:
+        quick_access = st.session_state['from_quick_access']
+        # Limpiar si el usuario navega fuera del menú principal correspondiente
+        if (quick_access in ['new_incident_record', 'manage_actions'] and main_selected != "Incidencias") or \
+           (quick_access == 'new_incident_code' and main_selected != "Altas") or \
+           (quick_access == 'analytics' and main_selected != "Consultas y Analítica") or \
+           (quick_access == 'export' and main_selected != "Administración"):
+            del st.session_state['from_quick_access']
     
     # Limpiar contexto de gestión de acciones si se navega a otra sección
     # PERO solo si no hay una fuerza explícita para permanecer en acciones
@@ -278,6 +304,10 @@ else:
                 if override_sub in sub_options:
                     sub_default_idx = sub_options.index(override_sub)
                 del st.session_state['sub_menu_override']
+            elif 'from_quick_access' in st.session_state and st.session_state['from_quick_access'] == 'new_incident_record':
+                # Mantener contexto para registro de incidencia desde acceso rápido
+                sub_options = ["Registro de Incidencia", "Gestión de Acciones", "Buscar por Código"]
+                sub_default_idx = sub_options.index("Registro de Incidencia")
             
             sub_selected = option_menu(
                 menu_title="Incidencias",
@@ -287,6 +317,14 @@ else:
                 default_index=sub_default_idx,
             )
 
+        # Limpiar contexto de acceso rápido si se navega manualmente a otra subsección
+        if 'from_quick_access' in st.session_state:
+            quick_access = st.session_state['from_quick_access']
+            # Solo limpiar si el usuario navega manualmente fuera de la sección de acceso rápido
+            if (quick_access == 'new_incident_record' and sub_selected != "Registro de Incidencia") or \
+               (quick_access == 'manage_actions' and sub_selected != "Gestión de Acciones"):
+                del st.session_state['from_quick_access']
+        
         # Limpiar contexto de gestión de acciones si se navega a otra subsección
         # PERO solo si no hay una fuerza explícita para permanecer en acciones
         if sub_selected != "Gestión de Acciones" and 'in_manage_actions' in st.session_state:
