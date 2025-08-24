@@ -16,8 +16,10 @@ except ImportError:
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+@st.cache_resource
 def get_supabase_connection():
-    """Obtiene el cliente de Supabase"""
+    """Obtiene el cliente de Supabase con cache de recursos para reutilización"""
+    logger.info("Initializing Supabase connection (cached)")
     return get_supabase_client()
 
 def init_db():
@@ -705,53 +707,53 @@ def get_dashboard_stats():
 
 @st.cache_data(ttl=120)  # Cache por 2 minutos
 def get_pending_incidents_summary():
-    """Obtiene resumen de incidencias pendientes para el dashboard"""
+    """Obtiene resumen de incidencias pendientes para el dashboard con consultas optimizadas"""
     try:
         client = get_supabase_connection()
+        
+        # Usar cache para datos de referencia que no cambian frecuentemente
+        warehouses_df = get_all_warehouses_df()
+        verifiers_df = get_all_verifiers_df()
+        coordinators_df = get_coordinators()
+        
+        # Obtener incidentes (crear función cacheada si no existe)
+        incidents_data = client.table('incidents').select('id, description').execute().data
+        incidents_df = pd.DataFrame(incidents_data)
+        
         result = client.table('incident_records').select(
             'id, date, status, responsible, warehouse_id, causing_verifier_id, incident_id, assigned_coordinator_id'
         ).neq('status', 'Solucionado').order('date', desc=True).limit(10).execute()
         
         processed_data = []
         for row in result.data:
-            # Obtener datos relacionados mediante consultas separadas para evitar joins problemáticos
+            # Usar DataFrames cacheados para obtener datos relacionados
             warehouse_name = "N/A"
             warehouse_zone = "N/A"
             if row.get('warehouse_id'):
-                try:
-                    warehouse_result = client.table('warehouses').select('name, zone').eq('id', row['warehouse_id']).execute()
-                    if warehouse_result.data:
-                        warehouse_name = warehouse_result.data[0]['name']
-                        warehouse_zone = warehouse_result.data[0]['zone']
-                except:
-                    pass
+                warehouse_row = warehouses_df[warehouses_df['id'] == row['warehouse_id']]
+                if not warehouse_row.empty:
+                    warehouse_name = warehouse_row.iloc[0]['name']
+                    warehouse_zone = warehouse_row.iloc[0]['zone']
             
             verifier_name = "N/A"
             if row.get('causing_verifier_id'):
-                try:
-                    verifier_result = client.table('verifiers').select('name, surnames').eq('id', row['causing_verifier_id']).execute()
-                    if verifier_result.data:
-                        verifier_name = f"{verifier_result.data[0]['name']} {verifier_result.data[0]['surnames']}"
-                except:
-                    pass
+                verifier_row = verifiers_df[verifiers_df['id'] == row['causing_verifier_id']]
+                if not verifier_row.empty:
+                    verifier_data = verifier_row.iloc[0]
+                    verifier_name = f"{verifier_data['name']} {verifier_data['surnames']}"
             
             incident_description = "N/A"
-            if row.get('incident_id'):
-                try:
-                    incident_result = client.table('incidents').select('description').eq('id', row['incident_id']).execute()
-                    if incident_result.data:
-                        incident_description = incident_result.data[0]['description']
-                except:
-                    pass
+            if row.get('incident_id') and not incidents_df.empty:
+                incident_row = incidents_df[incidents_df['id'] == row['incident_id']]
+                if not incident_row.empty:
+                    incident_description = incident_row.iloc[0]['description']
             
             coordinator_name = "N/A"
             if row.get('assigned_coordinator_id'):
-                try:
-                    coordinator_result = client.table('coordinators').select('name, surnames').eq('id', row['assigned_coordinator_id']).execute()
-                    if coordinator_result.data:
-                        coordinator_name = f"{coordinator_result.data[0]['name']} {coordinator_result.data[0]['surnames']}"
-                except:
-                    pass
+                coordinator_row = coordinators_df[coordinators_df['id'] == row['assigned_coordinator_id']]
+                if not coordinator_row.empty:
+                    coord_data = coordinator_row.iloc[0]
+                    coordinator_name = f"{coord_data['name']} {coord_data['surnames']}"
             
             processed_data.append({
                 'id': row['id'],
@@ -772,54 +774,41 @@ def get_pending_incidents_summary():
 
 @st.cache_data(ttl=120)  # Cache por 2 minutos
 def get_recent_actions(limit=5):
-    """Obtiene las acciones más recientes para el dashboard con información de bodega"""
+    """Obtiene las acciones más recientes para el dashboard con información optimizada usando JOINs"""
     try:
         client = get_supabase_connection()
+        
+        # Usar una consulta optimizada con JOINs para reducir el número de consultas
         result = client.table('incident_actions').select(
-            'action_date, action_description, new_status, performed_by, incident_record_id'
+            'action_date, action_description, new_status, performed_by, incident_record_id, '
+            'incident_records!inner(warehouse_id, warehouses!inner(name))'
         ).order('action_date', desc=True).limit(limit).execute()
         
         processed_data = []
         for row in result.data:
-            # Obtener información de la bodega para cada acción
             warehouse_name = "N/A"
             coordinator_name = "N/A"
             
-            if row.get('incident_record_id'):
-                try:
-                    # Obtener el warehouse_id del incident_record
-                    incident_result = client.table('incident_records').select(
-                        'warehouse_id'
-                    ).eq('id', row['incident_record_id']).execute()
-                    
-                    if incident_result.data and incident_result.data[0].get('warehouse_id'):
-                        warehouse_id = incident_result.data[0]['warehouse_id']
-                        # Obtener el nombre de la bodega
-                        warehouse_result = client.table('warehouses').select(
-                            'name'
-                        ).eq('id', warehouse_id).execute()
-                        
-                        if warehouse_result.data:
-                            warehouse_name = warehouse_result.data[0]['name']
-                except Exception as e:
-                    logger.warning(f"Error getting warehouse for action: {e}")
+            # Extraer nombre de bodega del JOIN
+            try:
+                if row.get('incident_records') and row['incident_records'].get('warehouses'):
+                    warehouse_name = row['incident_records']['warehouses']['name']
+            except (KeyError, TypeError):
+                warehouse_name = "N/A"
             
             # Obtener el nombre del coordinador si performed_by es un ID numérico
             if row.get('performed_by'):
                 try:
-                    # Verificar si performed_by es un ID numérico
                     coordinator_id = int(row['performed_by'])
-                    coordinator_result = client.table('coordinators').select(
-                        'name, surnames'
-                    ).eq('id', coordinator_id).execute()
-                    
-                    if coordinator_result.data:
-                        coord_data = coordinator_result.data[0]
+                    # Usar cache para coordinadores (ya está implementado en get_coordinators)
+                    coordinators_df = get_coordinators()
+                    coordinator_row = coordinators_df[coordinators_df['id'] == coordinator_id]
+                    if not coordinator_row.empty:
+                        coord_data = coordinator_row.iloc[0]
                         coordinator_name = f"{coord_data.get('name', '')} {coord_data.get('surnames', '')}".strip()
                     else:
                         coordinator_name = row['performed_by']
                 except (ValueError, TypeError):
-                    # Si no es un ID numérico, usar el valor tal como está
                     coordinator_name = row['performed_by']
             
             processed_data.append({
@@ -833,8 +822,28 @@ def get_recent_actions(limit=5):
         
         return pd.DataFrame(processed_data)
     except Exception as e:
-        logger.error(f"Error getting recent actions: {e}")
-        return pd.DataFrame()
+        logger.warning(f"Error with optimized query, falling back to simple query: {e}")
+        # Fallback a consulta simple si el JOIN falla
+        try:
+            result = client.table('incident_actions').select(
+                'action_date, action_description, new_status, performed_by, incident_record_id'
+            ).order('action_date', desc=True).limit(limit).execute()
+            
+            processed_data = []
+            for row in result.data:
+                processed_data.append({
+                    'action_date': row['action_date'],
+                    'action_description': row['action_description'],
+                    'new_status': row['new_status'],
+                    'performed_by': row.get('performed_by', 'N/A'),
+                    'incident_id': row['incident_record_id'] or "N/A",
+                    'warehouse': "N/A"
+                })
+            
+            return pd.DataFrame(processed_data)
+        except Exception as fallback_e:
+            logger.error(f"Error getting recent actions (fallback): {fallback_e}")
+            return pd.DataFrame()
 
 @st.cache_data(ttl=120)  # Cache por 2 minutos
 def get_recent_incidents():
@@ -1092,46 +1101,45 @@ def get_pending_incidents_by_coordinator(coordinator_id=None):
                 'coordinators!incident_records_assigned_coordinator_id_fkey(name, surnames)'
             ).neq('status', 'Solucionado').order('date', desc=True).limit(10).execute()
         
+        # Usar cache para datos de referencia que no cambian frecuentemente
+        warehouses_df = get_all_warehouses_df()
+        verifiers_df = get_all_verifiers_df()
+        coordinators_df = get_coordinators()
+        
+        # Obtener incidentes usando cache
+        incidents_data = client.table('incidents').select('id, description').execute().data
+        incidents_df = pd.DataFrame(incidents_data)
+        
         processed_data = []
         for row in result.data:
-            # Obtener datos relacionados mediante consultas separadas para evitar joins problemáticos
+            # Usar DataFrames cacheados para obtener datos relacionados
             warehouse_name = "N/A"
             warehouse_zone = "N/A"
             if row.get('warehouse_id'):
-                try:
-                    warehouse_result = client.table('warehouses').select('name, zone').eq('id', row['warehouse_id']).execute()
-                    if warehouse_result.data:
-                        warehouse_name = warehouse_result.data[0]['name']
-                        warehouse_zone = warehouse_result.data[0]['zone']
-                except:
-                    pass
+                warehouse_row = warehouses_df[warehouses_df['id'] == row['warehouse_id']]
+                if not warehouse_row.empty:
+                    warehouse_name = warehouse_row.iloc[0]['name']
+                    warehouse_zone = warehouse_row.iloc[0]['zone']
             
             verifier_name = "N/A"
             if row.get('causing_verifier_id'):
-                try:
-                    verifier_result = client.table('verifiers').select('name, surnames').eq('id', row['causing_verifier_id']).execute()
-                    if verifier_result.data:
-                        verifier_name = f"{verifier_result.data[0]['name']} {verifier_result.data[0]['surnames']}"
-                except:
-                    pass
+                verifier_row = verifiers_df[verifiers_df['id'] == row['causing_verifier_id']]
+                if not verifier_row.empty:
+                    verifier_data = verifier_row.iloc[0]
+                    verifier_name = f"{verifier_data['name']} {verifier_data['surnames']}"
             
             incident_description = "N/A"
-            if row.get('incident_id'):
-                try:
-                    incident_result = client.table('incidents').select('description').eq('id', row['incident_id']).execute()
-                    if incident_result.data:
-                        incident_description = incident_result.data[0]['description']
-                except:
-                    pass
+            if row.get('incident_id') and not incidents_df.empty:
+                incident_row = incidents_df[incidents_df['id'] == row['incident_id']]
+                if not incident_row.empty:
+                    incident_description = incident_row.iloc[0]['description']
             
             coordinator_name = "N/A"
             if row.get('assigned_coordinator_id'):
-                try:
-                    coordinator_result = client.table('coordinators').select('name, surnames').eq('id', row['assigned_coordinator_id']).execute()
-                    if coordinator_result.data:
-                        coordinator_name = f"{coordinator_result.data[0]['name']} {coordinator_result.data[0]['surnames']}"
-                except:
-                    pass
+                coordinator_row = coordinators_df[coordinators_df['id'] == row['assigned_coordinator_id']]
+                if not coordinator_row.empty:
+                    coord_data = coordinator_row.iloc[0]
+                    coordinator_name = f"{coord_data['name']} {coord_data['surnames']}"
             
             processed_data.append({
                 'id': row['id'],

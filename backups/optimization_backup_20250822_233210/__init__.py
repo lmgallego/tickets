@@ -1,1 +1,0 @@
-# Components package for CAVA CRM Incident Management System

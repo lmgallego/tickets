@@ -6,9 +6,6 @@ from utils.database_unified import insert_coordinator, insert_verifier, insert_w
 def coordinator_form():
     st.subheader('Alta de Coordinador')
     
-    if 'coord_form_counter' not in st.session_state:
-        st.session_state.coord_form_counter = 0
-    
     name = st.text_input('Nombre', key=f'coord_name_{st.session_state.coord_form_counter}', help='Ingrese un nombre válido (mínimo 2 caracteres)')
     surnames = st.text_input('Apellidos', key=f'coord_surnames_{st.session_state.coord_form_counter}', help='Ingrese apellidos válidos (mínimo 2 caracteres)')
     
@@ -27,13 +24,11 @@ def coordinator_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='coord_dashboard_btn', use_container_width=True):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
 
 def verifier_form():
     st.subheader('Alta de Verificador')
-    
-    if 'verif_form_counter' not in st.session_state:
-        st.session_state.verif_form_counter = 0
     
     name = st.text_input('Nombre', key=f'verif_name_{st.session_state.verif_form_counter}', help='Mínimo 2 caracteres')
     surnames = st.text_input('Apellidos', key=f'verif_surnames_{st.session_state.verif_form_counter}', help='Mínimo 2 caracteres')
@@ -56,13 +51,11 @@ def verifier_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='verif_dashboard_btn', use_container_width=True):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
 
 def warehouse_form():
     st.subheader('Alta de Bodega')
-    
-    if 'warehouse_form_counter' not in st.session_state:
-        st.session_state.warehouse_form_counter = 0
     
     name = st.text_input('Nombre', key=f'wh_name_{st.session_state.warehouse_form_counter}', help='Nombre de la bodega')
     codigo_consejo = st.text_input('Código Consejo', key=f'wh_codigo_{st.session_state.warehouse_form_counter}', help='Código del consejo regulador')
@@ -84,6 +77,7 @@ def warehouse_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='warehouse_dashboard_btn', use_container_width=True):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
 
 def csv_upload(section):
@@ -139,9 +133,6 @@ def csv_upload(section):
 def incident_form():
     st.subheader('Alta de Incidencia')
     
-    if 'incident_form_counter' not in st.session_state:
-        st.session_state.incident_form_counter = 0
-    
     # Opción para código personalizado o automático
     col1, col2 = st.columns([1, 3])
     with col1:
@@ -196,6 +187,7 @@ def incident_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='incident_dashboard_btn', use_container_width=True):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
 
 def search_incident_form():
@@ -278,13 +270,13 @@ def search_incident_form():
     st.markdown("---")
     if st.button('🏠 Volver al Dashboard', key='search_incident_dashboard_btn', use_container_width=True):
         st.session_state.main_menu_override = 'Dashboard'
+        st.session_state._override_just_set = True
         st.rerun()
 
 def incident_record_form():
     st.subheader('Registro de Incidencia')
     
-    if 'incident_record_counter' not in st.session_state:
-        st.session_state.incident_record_counter = 0
+
     
     date = st.date_input('Fecha', datetime.date.today(), key=f'inc_rec_date_{st.session_state.incident_record_counter}', help='Seleccione la fecha de la incidencia')
     try:
@@ -380,6 +372,7 @@ def incident_record_form():
     with col3:
         if st.button('🏠 Volver al Dashboard', key='incident_record_dashboard_btn'):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
     
     if save_button:
@@ -428,8 +421,7 @@ def incident_record_form():
 def manage_incident_actions_form():
     st.subheader('Gestión de Acciones de Incidencia')
     
-    if 'incident_actions_counter' not in st.session_state:
-        st.session_state.incident_actions_counter = 0
+
     
     # Mantener la selección del registro después de guardar una acción
     if 'selected_incident_record_id' not in st.session_state:
@@ -542,6 +534,7 @@ def manage_incident_actions_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='manage_actions_dashboard_btn'):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
     
     if save_action_button:

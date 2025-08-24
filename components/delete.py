@@ -17,6 +17,7 @@ def delete_test_data_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='delete_data_dashboard_btn'):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
     
     if delete_button:
@@ -38,6 +39,7 @@ def backup_database_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='backup_dashboard_btn'):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
     
     if backup_button:
@@ -69,6 +71,7 @@ def export_excel_form():
     with col2:
         if st.button('🏠 Volver al Dashboard', key='export_excel_dashboard_btn'):
             st.session_state.main_menu_override = 'Dashboard'
+            st.session_state._override_just_set = True
             st.rerun()
     
     if export_button:
@@ -133,6 +136,7 @@ def restore_database_form():
         with col2:
             if st.button('🏠 Volver al Dashboard', key='restore_dashboard_btn'):
                 st.session_state.main_menu_override = 'Dashboard'
+                st.session_state._override_just_set = True
                 st.rerun()
         
         if restore_button:
