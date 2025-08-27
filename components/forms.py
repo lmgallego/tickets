@@ -544,6 +544,12 @@ def manage_incident_actions_form():
                 success = insert_incident_action(incident_record_id, action_date, action_description, new_status, performed_by)
             
             if success:
+                # Limpiar cache de Streamlit para forzar actualización de datos
+                try:
+                    st.cache_data.clear()
+                except:
+                    pass  # Ignorar si no se puede limpiar el cache
+                
                 st.success('Acción guardada exitosamente.')
                 # Incrementar contador para limpiar formulario
                 st.session_state.incident_actions_counter += 1

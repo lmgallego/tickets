@@ -159,10 +159,7 @@ def get_delete_components():
 
 def get_admin_components():
     """Lazy loading para componentes de administración"""
-    from forms.backup_database_form import backup_database_form
-    from forms.restore_database_form import restore_database_form
-    from forms.export_excel_form import export_excel_form
-    from forms.delete_test_data_form import delete_test_data_form
+    from components.delete import backup_database_form, restore_database_form, export_excel_form, delete_test_data_form
     
     return {
         'backup_database_form': backup_database_form,

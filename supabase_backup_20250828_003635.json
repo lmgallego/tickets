@@ -1,0 +1,2866 @@
+{
+  "coordinators": [
+    {
+      "id": 31,
+      "name": "LUISMA",
+      "surnames": "GALLEGO"
+    },
+    {
+      "id": 32,
+      "name": "ELISABET",
+      "surnames": "PALLEROLS"
+    },
+    {
+      "id": 33,
+      "name": "FRANCESC ",
+      "surnames": "MUÑOZ"
+    },
+    {
+      "id": 34,
+      "name": "FOIX",
+      "surnames": "PEDROLA"
+    },
+    {
+      "id": 35,
+      "name": "MARIO ",
+      "surnames": "BELMAR"
+    },
+    {
+      "id": 37,
+      "name": "NO",
+      "surnames": "APLICA"
+    },
+    {
+      "id": 36,
+      "name": "SABRINA",
+      "surnames": "SAMPER"
+    }
+  ],
+  "verifiers": [
+    {
+      "id": 101,
+      "name": "CRISTIAN",
+      "surnames": "ALAJARIN RIVED",
+      "phone": "674603422",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 102,
+      "name": "MARIA",
+      "surnames": "ALVAREZ GARCIA",
+      "phone": "685818675",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 103,
+      "name": "LUCAS",
+      "surnames": "ARIAS LOPEZ",
+      "phone": "601062935",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 104,
+      "name": "JOAN",
+      "surnames": "BANLLÈS SANTAMARIA",
+      "phone": "663311634",
+      "zone": "LLEIDA"
+    },
+    {
+      "id": 105,
+      "name": "DAVID",
+      "surnames": " BARRIO PEÑAS",
+      "phone": "616390259",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 106,
+      "name": "MIREIA",
+      "surnames": "BELMONTE",
+      "phone": "695251857",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 107,
+      "name": "MARI",
+      "surnames": "LUZ BENITO RODRIGUEZ",
+      "phone": "653081757",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 108,
+      "name": "SABA",
+      "surnames": "BERGVADZE",
+      "phone": "643898997",
+      "zone": "LLEIDA"
+    },
+    {
+      "id": 109,
+      "name": "CRISTIAN",
+      "surnames": "BORJA ELEGIDO",
+      "phone": "653143030",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 110,
+      "name": "ADAYA",
+      "surnames": "CALDERON FALCÓN",
+      "phone": "616705915",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 111,
+      "name": "ESTEVE",
+      "surnames": "CALLAO HIDALGO",
+      "phone": "633933503",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 112,
+      "name": "LUCIO",
+      "surnames": "CARABALLO SANCHEZ",
+      "phone": "603466210",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 113,
+      "name": "FRANCESC",
+      "surnames": "CARRILERO SALAS",
+      "phone": "659679631",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 114,
+      "name": "MARÍA",
+      "surnames": "DEL CARMEN  CASCAJOSA BASTIDA ",
+      "phone": "619993169",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 115,
+      "name": "ORIOL",
+      "surnames": "CHAVALES FERNANDEZ",
+      "phone": "657317002",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 116,
+      "name": "LUCAS",
+      "surnames": "CID HERNANDEZ",
+      "phone": "661617026",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 117,
+      "name": "SANDRA",
+      "surnames": "VICTORIA CÓRDOBA MOLOSCHIK",
+      "phone": "657098875",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 118,
+      "name": "MARIA",
+      "surnames": "CARMEN COVARRUBIAS MELASIO",
+      "phone": "651597767",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 119,
+      "name": "JÚLIA",
+      "surnames": "CRESPO VIA",
+      "phone": "606738542",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 120,
+      "name": "RUBEN",
+      "surnames": "DE LA FLOR SOSA",
+      "phone": "605130443",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 121,
+      "name": "ORIOL",
+      "surnames": "DESCALZI MARRON",
+      "phone": "699989093",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 122,
+      "name": "ANNA",
+      "surnames": "DOMÈNECH CAPDEVILA",
+      "phone": "659602920",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 123,
+      "name": "ROGER",
+      "surnames": "DURAN FELIPE",
+      "phone": "637262000",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 124,
+      "name": "SOUFIAN",
+      "surnames": " EL JELD KERZAZI",
+      "phone": "632067630",
+      "zone": "LLEIDA"
+    },
+    {
+      "id": 125,
+      "name": "ISMAEL",
+      "surnames": "EL MELOUDI",
+      "phone": "631001784",
+      "zone": "LLEIDA"
+    },
+    {
+      "id": 126,
+      "name": "MOHAMED",
+      "surnames": "EL MELOUDI RAMLI",
+      "phone": "631130573",
+      "zone": "LLEIDA"
+    },
+    {
+      "id": 127,
+      "name": "GREGORI",
+      "surnames": "ESCALONA LOPEZ",
+      "phone": "627446885",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 128,
+      "name": "LAURA",
+      "surnames": "ESTRADA GARRIGA",
+      "phone": "603454426",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 129,
+      "name": "MARC",
+      "surnames": "FABREGAS GOMIS",
+      "phone": "632570576",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 130,
+      "name": "MARC",
+      "surnames": "FALIP BISCARRI",
+      "phone": "676945192",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 131,
+      "name": "ANDREU",
+      "surnames": "FERRER ROCA",
+      "phone": "642122526",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 132,
+      "name": "VERONICA",
+      "surnames": "FORNES VIÑARTA",
+      "phone": "616325534",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 133,
+      "name": "MIRTA",
+      "surnames": "DE LOS ANGELES GAITAN RIOS",
+      "phone": "671050851",
+      "zone": "CARIÑENA"
+    },
+    {
+      "id": 134,
+      "name": "DIEGO",
+      "surnames": "GARCIA CAMPAÑA",
+      "phone": "655551522",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 135,
+      "name": "FRANCISCO",
+      "surnames": "GARCIA DOMINGUEZ ",
+      "phone": "645240023",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 136,
+      "name": "ABRIL",
+      "surnames": "GIRÓ CAÑAS",
+      "phone": "682663589",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 137,
+      "name": "EVA",
+      "surnames": "GÒMEZ GARCIA",
+      "phone": "605477355",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 138,
+      "name": "CARLOS",
+      "surnames": "GONZALEZ DIEZ",
+      "phone": "694426070",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 139,
+      "name": "GRISELDA",
+      "surnames": "GONZALEZ MARTI",
+      "phone": "650184422",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 140,
+      "name": "LAURA",
+      "surnames": "GONZÀLEZ MUÑOZ",
+      "phone": "622321722",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 141,
+      "name": "PAULA",
+      "surnames": "GONZALEZ RODRIGUEZ",
+      "phone": "644984185",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 142,
+      "name": "SAMMUEL",
+      "surnames": "HERMANN KLEINGRIES FORCÉN",
+      "phone": "628315970",
+      "zone": "CARIÑENA"
+    },
+    {
+      "id": 143,
+      "name": "LAURA",
+      "surnames": " HERRERA SANCHEZ",
+      "phone": "609131591",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 144,
+      "name": "ERNESTO",
+      "surnames": "HUERTA GALLEGO",
+      "phone": "652134148",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 145,
+      "name": "MARCEL",
+      "surnames": "IZQUIERDO PEREZ",
+      "phone": "654628474",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 146,
+      "name": "LORENA",
+      "surnames": "JARA ALVAREZ",
+      "phone": "696253744",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 147,
+      "name": "JOSE",
+      "surnames": "JIMENEZ FERNANDEZ",
+      "phone": "678035341",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 148,
+      "name": "MARIA",
+      "surnames": "CAMILA LONDOÑO RESTREPO,",
+      "phone": "658629087",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 149,
+      "name": "RAMON",
+      "surnames": "MALLOFRE FLIX",
+      "phone": "618714969",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 150,
+      "name": "MARCOS",
+      "surnames": "MARTÍ CONTRERAS",
+      "phone": "722372675",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 151,
+      "name": "JORDI",
+      "surnames": "MARTIN GARCIA",
+      "phone": "608110192",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 152,
+      "name": "NÚRIA",
+      "surnames": "MARTINEZ BARRIO",
+      "phone": "628116033",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 153,
+      "name": "MARIA",
+      "surnames": "MARTINEZ NAVARRO",
+      "phone": "669673770",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 154,
+      "name": "GERARD",
+      "surnames": "MARTINEZ ROMERO",
+      "phone": "622235009",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 155,
+      "name": "NÚRIA",
+      "surnames": "MATEU DE LAMO",
+      "phone": "671708180",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 156,
+      "name": "PAULA",
+      "surnames": "MILENA GELACIO",
+      "phone": "689159968",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 157,
+      "name": "PAULA",
+      "surnames": "MIRAVENT GRANDE",
+      "phone": "639041414",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 158,
+      "name": "SANDRA",
+      "surnames": "MORAL ROMAN",
+      "phone": "665567743",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 159,
+      "name": "RAUL",
+      "surnames": "MORENO",
+      "phone": "638574400",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 160,
+      "name": "ANNA",
+      "surnames": "MARIA MORENO BOU",
+      "phone": "654058947",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 161,
+      "name": "LESLY",
+      "surnames": " MOSCOSO PONCE",
+      "phone": "665928684",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 162,
+      "name": "JUAN",
+      "surnames": "CARLOS NAVARRO CÁRCEL",
+      "phone": "600534112",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 163,
+      "name": "GEMMA",
+      "surnames": "ORDAZ BARRANCO",
+      "phone": "611590872",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 164,
+      "name": "RUBEN",
+      "surnames": "ORERO FERNÁNDEZ",
+      "phone": "617546398",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 165,
+      "name": "PAU",
+      "surnames": "ORTEGA MOREAU",
+      "phone": "644781121",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 166,
+      "name": "JORGE",
+      "surnames": "PEREZ OCHANDO",
+      "phone": "648803868",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 167,
+      "name": "DAVID",
+      "surnames": "PO",
+      "phone": "938903104",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 168,
+      "name": "RAQUEL",
+      "surnames": "PONCE LARA",
+      "phone": "687681941",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 169,
+      "name": "PAU",
+      "surnames": "PONS BOVÉ",
+      "phone": "638878818",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 170,
+      "name": "NATÀLIA",
+      "surnames": "PONS FECED",
+      "phone": "647032249",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 171,
+      "name": "JORDI",
+      "surnames": "PUIGJANER PUIG",
+      "phone": "691623922",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 172,
+      "name": "MARC",
+      "surnames": "PUIGJANER PUIG",
+      "phone": "638673460",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 173,
+      "name": "ANNA",
+      "surnames": "MARIA PUJADAS MERCADE",
+      "phone": "622151593",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 174,
+      "name": "SHEILLA",
+      "surnames": "QUEVEDO GARCÍA",
+      "phone": "655011345",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 175,
+      "name": "SALVI",
+      "surnames": "RAMIRO TORRENTS",
+      "phone": "646300461",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 176,
+      "name": "MIRIAM",
+      "surnames": "RAMON FUERTES",
+      "phone": "620844006",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 177,
+      "name": "PAU",
+      "surnames": "REQUENA SETÓ",
+      "phone": "695560657",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 178,
+      "name": "MARC",
+      "surnames": "REQUENA SETÓ",
+      "phone": "685531793",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 179,
+      "name": "MAUR",
+      "surnames": "RODA RIGOL",
+      "phone": "672646662",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 180,
+      "name": "PAULA",
+      "surnames": "RODRIGUEZ BONET",
+      "phone": "635076665",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 181,
+      "name": "LAURA",
+      "surnames": "RODRÍGUEZ ESPELT",
+      "phone": "722723662",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 182,
+      "name": "SHEILA",
+      "surnames": "RODRÍGUEZ ORTIZ",
+      "phone": "662500310",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 183,
+      "name": "JUDITH",
+      "surnames": "RODRIGUEZ PRADOS",
+      "phone": "666378167",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 184,
+      "name": "CARLA",
+      "surnames": "SABATÉ BOSCH",
+      "phone": "672645056",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 185,
+      "name": "LAIA",
+      "surnames": "SALVAT MASSÓ",
+      "phone": "697329117",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 186,
+      "name": "SABRINA",
+      "surnames": "SAMPER BRUNO",
+      "phone": "650485501",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 187,
+      "name": "ALEJANDRO",
+      "surnames": "SERRANO PAEZ",
+      "phone": "697995664",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 188,
+      "name": "AINA",
+      "surnames": "SOLER GIRÓ",
+      "phone": "628076197",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 189,
+      "name": "IVET",
+      "surnames": "SOLER GIRÓ",
+      "phone": "682635314",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 190,
+      "name": "ELOY",
+      "surnames": "SOLER MAINAR",
+      "phone": "661098703",
+      "zone": "CARIÑENA"
+    },
+    {
+      "id": 191,
+      "name": "VICTORIA",
+      "surnames": "SUAREZ REINO",
+      "phone": "665541185",
+      "zone": "CARIÑENA"
+    },
+    {
+      "id": 192,
+      "name": "JORDI",
+      "surnames": "SUJAR ORTEGA",
+      "phone": "600397180",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 193,
+      "name": "DOLORES",
+      "surnames": "TALAVERA CHAVEZ",
+      "phone": "629728503",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 194,
+      "name": "JOAN",
+      "surnames": "TARRAGÓ QUERALT",
+      "phone": "717778832",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 195,
+      "name": "VALERIA",
+      "surnames": "NICOL TUESTA TAFUR",
+      "phone": "624069787",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 196,
+      "name": "MARC",
+      "surnames": "VALLES SOLE",
+      "phone": "603869477",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 197,
+      "name": "LAURA",
+      "surnames": "VILLA MORIANO",
+      "phone": "677145553",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 198,
+      "name": "YU",
+      "surnames": "ZHUO XIN",
+      "phone": "635276880",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 199,
+      "name": "NO",
+      "surnames": "APLICA",
+      "phone": "",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 200,
+      "name": "MARIA ISABEL",
+      "surnames": "LOPEZ NUÑEZ",
+      "phone": "628566042",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 201,
+      "name": "GARBÍ ",
+      "surnames": "LÓPEZ INCHUSTA",
+      "phone": "643441481",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 202,
+      "name": "ADRIA",
+      "surnames": "GONZALEZ LOPEZ",
+      "phone": "633968882",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 203,
+      "name": "Marcos José",
+      "surnames": "Rozalén Diaz",
+      "phone": "643252932",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 204,
+      "name": "Kevin  Esteban",
+      "surnames": " Oquendo Rizo",
+      "phone": "623423850",
+      "zone": "ALT CAMP"
+    }
+  ],
+  "warehouses": [
+    {
+      "id": 14,
+      "name": "AGR.I SEC.CREDIT DE LLORENÇ DEL PENEDES,SCCL.",
+      "nif": "2123-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 15,
+      "name": "AGR.SEC.CREDIT SANT ISIDRE DE VILABELLA,SCCL.",
+      "nif": "2125-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 16,
+      "name": "AGRICOLA CASA SALA, S.A.",
+      "nif": "2159-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 17,
+      "name": "AGRICOLA D'ALIÓ,S.C.C.L.",
+      "nif": "2118-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 18,
+      "name": "AGRICOLA DE BARBERÀ, SCCL.",
+      "nif": "2050-01",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 19,
+      "name": "AGRICOLA DE LA CONCA  I SC,SCCL.",
+      "nif": "2129-03",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 20,
+      "name": "AGRICOLA DE LA CONCA  I SC,SCCL.",
+      "nif": "2129-01",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 21,
+      "name": "AGRICOLA DE LA CONCA  I SC,SCCL.",
+      "nif": "2129-02",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 22,
+      "name": "AGRICOLA DE L'ARGILAGA, SCCL",
+      "nif": "2092-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 23,
+      "name": "AGRICOLA DE SALOMO, SCCL.",
+      "nif": "2099-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 24,
+      "name": "AGRICOLA I SECCIO DE CREDIT D'ALBINYANA,SCCL.",
+      "nif": "2054-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 25,
+      "name": "ALTA ALELLA, SL",
+      "nif": "2147-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 26,
+      "name": "ANTONIO MASCARO, S.L.",
+      "nif": "2073-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 27,
+      "name": "AVINYO VINYATERS, S.L.",
+      "nif": "2046-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 28,
+      "name": "AYMAR VITIVINICOLES, S.L.",
+      "nif": "2219-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 29,
+      "name": "BLANCHER CAPDEVILA PUJOL, S.A.",
+      "nif": "2047-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 30,
+      "name": "BODEGA NTRA. SRA. DEL MILAGRO, C.V.",
+      "nif": "2163-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 31,
+      "name": "BODEGA SAN VALERO, S.COOP.",
+      "nif": "2061-02",
+      "zone": "CARIÑENA"
+    },
+    {
+      "id": 32,
+      "name": "BODEGAS BORDEJE, S.L.",
+      "nif": "2037-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 33,
+      "name": "BODEGAS CA N'ESTELLA, S.L.",
+      "nif": "2150-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 34,
+      "name": "BODEGAS DEHESA DE ARRIBA, S.L.",
+      "nif": "2210-01",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 35,
+      "name": "BODEGAS ESCUDERO, S.L.",
+      "nif": "2035-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 36,
+      "name": "BODEGAS FAUSTINO, S.L.",
+      "nif": "2034-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 37,
+      "name": "BODEGAS HISPANO SUIZAS, S.L.",
+      "nif": "2174-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 38,
+      "name": "BODEGAS IGNACIO MARIN, S.L.",
+      "nif": "2222-01",
+      "zone": "CARIÑENA"
+    },
+    {
+      "id": 39,
+      "name": "BODEGAS MUGA, S.L.",
+      "nif": "2032-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 40,
+      "name": "BODEGAS ONDARRE, S.A.",
+      "nif": "2033-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 41,
+      "name": "BODEGAS PEÑALBA LOPEZ, S.L.",
+      "nif": "2165-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 42,
+      "name": "BODEGAS PINORD, S.A.",
+      "nif": "2107-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 43,
+      "name": "BODEGAS ROMALE, S.L.",
+      "nif": "2172-01",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 44,
+      "name": "BODEGAS ROMALE, S.L.(NO)- Calle Mecanica ",
+      "nif": "2172-02",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 45,
+      "name": "BODEGAS SOLAR DE URBEZO, S.L.",
+      "nif": "2220-01",
+      "zone": "CARIÑENA"
+    },
+    {
+      "id": 46,
+      "name": "BODEGAS VEGALFARO, S.L.",
+      "nif": "2170-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 47,
+      "name": "BODEGUES SUMARROCA, S.L.",
+      "nif": "2021-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 48,
+      "name": "BOLDU ALFONSO, Joan",
+      "nif": "2200-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 49,
+      "name": "CAL GASSET, S.L.",
+      "nif": "2128-01",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 50,
+      "name": "CAL PLANAS, SCP.",
+      "nif": "2115-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 51,
+      "name": "CAN BONASTRE WINE RESORT, S.L.",
+      "nif": "2113-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 52,
+      "name": "CANALS FERRER, PERE",
+      "nif": "2097-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 53,
+      "name": "CAR VINICOLAS REUNIDAS, S.A.",
+      "nif": "2161-01",
+      "zone": "LLEIDA"
+    },
+    {
+      "id": 54,
+      "name": "CARLES DE LAVERN, S.A.",
+      "nif": "2177-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 55,
+      "name": "CASTELL D'AGE, S.A.",
+      "nif": "2201-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 56,
+      "name": "CASTELL D'OR, S.L.",
+      "nif": "2132-51",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 57,
+      "name": "CASTELL D'OR, S.L.",
+      "nif": "2132-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 58,
+      "name": "CASTELL D'OR, S.L.",
+      "nif": "2132-52",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 59,
+      "name": "CASTELO DE PEDREGOSA, S.L.",
+      "nif": "2225-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 60,
+      "name": "CAVAS MAREVIA, S.L.U.",
+      "nif": "2181-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 61,
+      "name": "CAVAS PARES BALTA, S.L.U.",
+      "nif": "2060-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 62,
+      "name": "CELLER CAN PAGES, S.L.",
+      "nif": "2124-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 63,
+      "name": "CELLER CARLES ANDREU, S.L.",
+      "nif": "2186-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 64,
+      "name": "CELLER COOP.DE MOJA, SCCL.",
+      "nif": "2144-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 65,
+      "name": "CELLER COOP.I SEC.DE CREDIT VILA-RODONA,SCCL.",
+      "nif": "2053-03",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 66,
+      "name": "CELLER COOP.I SEC.DE CREDIT VILA-RODONA,SCCL.",
+      "nif": "2053-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 67,
+      "name": "CELLER COOPERATIU LA GRANADA, SCCL.",
+      "nif": "2056-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 68,
+      "name": "CELLER DE VITICULTORS ,SAT CAT 22",
+      "nif": "2057-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 69,
+      "name": "CELLER JOSEP M. FERRET, S.L.",
+      "nif": "2211-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 70,
+      "name": "CELLER JOSEP PIÑOL, S.L.",
+      "nif": "2059-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 71,
+      "name": "CELLER KRIPTA, S.A.U.",
+      "nif": "2138-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 72,
+      "name": "CELLERS ALSINA, S.L.",
+      "nif": "2029-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 73,
+      "name": "CELLERS DOMENYS I SC, SCCL.",
+      "nif": "2051-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 74,
+      "name": "CELLERS DOMENYS I SC, SCCL.",
+      "nif": "2051-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 75,
+      "name": "CELLERS DOMENYS I SC, SCCL.",
+      "nif": "2051-04",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 76,
+      "name": "CELLERS DOMENYS I SC, SCCL.",
+      "nif": "2131-01",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 77,
+      "name": "CENTRE VINICOLA DEL PENEDES, SCCL.",
+      "nif": "2045-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 78,
+      "name": "CEVIPE, SCCL",
+      "nif": "2017-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 79,
+      "name": "CHOZAS CARRASCAL GR, S.L.",
+      "nif": "2171-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 80,
+      "name": "CODORNIU, S.A.",
+      "nif": "2002-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 81,
+      "name": "CODORNIU, S.A.-LLEIDA",
+      "nif": "2002-03",
+      "zone": "LLEIDA"
+    },
+    {
+      "id": 82,
+      "name": "COOP. EL CAMPO SAN ISIDRO LABRADOR,C.V.",
+      "nif": "2166-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 83,
+      "name": "COOP. PURÍSIMA CONCEPCIÓN, C.V.",
+      "nif": "2213-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 84,
+      "name": "COOP. VALENCIANA AGRÍCOLA \"LA UNIÓN\"",
+      "nif": "2205-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 85,
+      "name": "COOP. VINICOLA DEL PENEDES, SCCL. (COVIDES)-VILAFRANCA",
+      "nif": "2048-04",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 86,
+      "name": "COOP. VINICOLA DEL PENEDES, SCCL. (COVIDES)-SANT CUGAT",
+      "nif": "2048-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 87,
+      "name": "COOP. VINICOLA DEL PENEDES, SCCL. (COVIDES)-SANT SADURNI",
+      "nif": "2048-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 88,
+      "name": "COOP. VIT.I SEC. DE CREDITO \"EL PROGRESO\"C.V.",
+      "nif": "2190-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 89,
+      "name": "COOP.AGRIC. LA INMACULADA.COOP VALENCIANA",
+      "nif": "2198-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 90,
+      "name": "COOPERATIVA AGRICOLA NIÑO JESUS, COOP.V.",
+      "nif": "2215-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 91,
+      "name": "COOPERATIVA VITICULTORES DE LA VEGA, COOP. V.",
+      "nif": "2224-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 92,
+      "name": "DE TUDO VIVES, FRANCISCO JAVIER",
+      "nif": "2137-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 93,
+      "name": "DOMINIO DE LA VEGA, S.L.",
+      "nif": "2156-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 94,
+      "name": "EL MAS PUJO, S.A.",
+      "nif": "2030-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 95,
+      "name": "ELIAS CAN CARAFI, S.L.",
+      "nif": "2122-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 96,
+      "name": "ESC.VIT.i ENO.MERCÈ ROSSELL i DOMÈNECH",
+      "nif": "2207-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 97,
+      "name": "FELIX MASSANA, S.L.",
+      "nif": "2192-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 98,
+      "name": "FERMI BOHIGAS, S.A.",
+      "nif": "2044-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 99,
+      "name": "FERRÉ I CATASÚS, S.L.",
+      "nif": "2153-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 100,
+      "name": "FINCA CASTELL DE SUBIRATS, S.A.",
+      "nif": "2011-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 101,
+      "name": "FINCA SAN BLAS, S.L.",
+      "nif": "2218-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 102,
+      "name": "FINCA VALLDOSERA, S.A.",
+      "nif": "2024-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 103,
+      "name": "FREIXENET, S.A.",
+      "nif": "2042-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 104,
+      "name": "GANADERIA Y HACIENDA, S.A.",
+      "nif": "2095-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 105,
+      "name": "GARCIA CARRION 1890, S.L.-SANT MARTI",
+      "nif": "2173-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 106,
+      "name": "GARCIA CARRION 1890, S.L.-VILANOVA",
+      "nif": "2173-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 107,
+      "name": "GATELL ESTATE WINES, S.L.",
+      "nif": "2199-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 108,
+      "name": "GIRÓ DEL GORNER, S.L.",
+      "nif": "2014-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 109,
+      "name": "GIRO RIBOT, S.L.",
+      "nif": "2007-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 110,
+      "name": "GONZALEZ BYASS, S.A.",
+      "nif": "2164-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 111,
+      "name": "GUILERA RIAMBAU, Josep",
+      "nif": "2127-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 112,
+      "name": "HERETAT MAS TINELL, S.L.",
+      "nif": "2058-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 113,
+      "name": "HERETAT MESTRES, S.L.",
+      "nif": "2141-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 114,
+      "name": "JANE BAQUES, S.L.",
+      "nif": "2064-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 115,
+      "name": "JANÉ SOLÉ, Francesc Xavier",
+      "nif": "2080-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 116,
+      "name": "JANE VENTURA, S.A.",
+      "nif": "2182-51",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 117,
+      "name": "JOSEP MASACHS, S.L.-TORRELLES",
+      "nif": "2012-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 118,
+      "name": "JOSEP MASACHS, S.L.-SANT MARTI",
+      "nif": "2012-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 119,
+      "name": "JOSEP TORRES SIBILL, S.L.",
+      "nif": "2212-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 120,
+      "name": "JUVE & CAMPS, S.A.",
+      "nif": "2065-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 121,
+      "name": "LA GRAMANOSA, S.L.",
+      "nif": "2183-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 122,
+      "name": "LA XARMADA, SCCL.",
+      "nif": "2116-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 123,
+      "name": "LLEURE OLESA, S.L.",
+      "nif": "2184-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 124,
+      "name": "LLOPART PONS, Joan",
+      "nif": "2077-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 125,
+      "name": "LLUCH LLUCH, Jordi",
+      "nif": "2074-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 126,
+      "name": "LLUCH MOLINARI, Pere",
+      "nif": "2075-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 127,
+      "name": "LOPEZ MORENAS, S.L.",
+      "nif": "2175-01",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 128,
+      "name": "MARQUES DE LA CONCORDIA FAMILY OF WINES, SLU.",
+      "nif": "2004-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 129,
+      "name": "MAS GUINEU VINYATERS, SCP",
+      "nif": "2105-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 130,
+      "name": "MASIA CODINA, S.L.",
+      "nif": "2027-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 131,
+      "name": "MASIA PAPIOL, S.L.",
+      "nif": "2025-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 132,
+      "name": "MASIA PUIGMOLTÓ, S.L.",
+      "nif": "2180-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 133,
+      "name": "MASIA VALLFORMOSA, SL",
+      "nif": "2114-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 134,
+      "name": "MASSANA NOYA, S.L.",
+      "nif": "2149-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 135,
+      "name": "MATA I COLOMA, S.L.",
+      "nif": "2145-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 136,
+      "name": "MUNGUST, S.L.",
+      "nif": "2133-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 137,
+      "name": "OLERDOLAVINS, S.L.",
+      "nif": "2081-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 138,
+      "name": "OLIVER VITICULTORS, S.L.",
+      "nif": "2216-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 139,
+      "name": "ORIOL ROSSELL, S.A.",
+      "nif": "2162-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 140,
+      "name": "PAGO DE THARSYS, S.L.",
+      "nif": "2157-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 141,
+      "name": "PARATO VINICOLA, S.L.",
+      "nif": "2019-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 142,
+      "name": "PASCUAL CABALLERIA, NURIA",
+      "nif": "2209-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 143,
+      "name": "PERE VENTURA I FAMILIA, S.L.",
+      "nif": "2194-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 144,
+      "name": "PERE VENTURA I FAMILIA, S.L.",
+      "nif": "2194-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 145,
+      "name": "PEREZ JIMENEZ, Gonzalo",
+      "nif": "2197-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 146,
+      "name": "PEREZ ROURA, Juan A.",
+      "nif": "2069-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 147,
+      "name": "PONS I FONT ELABORADORS, S.L.",
+      "nif": "2223-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 148,
+      "name": "RAVENTOS ROSELL,S.L.",
+      "nif": "2063-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 149,
+      "name": "ROSA Mª TORRES, S.L.",
+      "nif": "2154-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 150,
+      "name": "ROVELLATS, S.A.",
+      "nif": "2008-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 151,
+      "name": "S.A.T. MAS LLUET Nº 905",
+      "nif": "2084-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 152,
+      "name": "S.COOP.VALENCIANA DE VITICULTORES LIMITADA",
+      "nif": "2195-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 153,
+      "name": "SADEVE, S.A.",
+      "nif": "2083-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 154,
+      "name": "SAT Nº 517 CV MONTESANCO",
+      "nif": "2206-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 155,
+      "name": "SEGURA VIUDAS, S.A.",
+      "nif": "2003-02",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 156,
+      "name": "SEGURA VIUDAS, S.A.",
+      "nif": "2003-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 157,
+      "name": "TORNE CALDU, Felix",
+      "nif": "2135-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 158,
+      "name": "TORRE ORIA, S.L.",
+      "nif": "2106-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 159,
+      "name": "TORRENS MOLINER, S.L.",
+      "nif": "2189-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 160,
+      "name": "TORRES PRUNERA, S.L.",
+      "nif": "2119-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 161,
+      "name": "U MES U FAN TRES, S.L.",
+      "nif": "2203-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 162,
+      "name": "UNIÓ FRUITS,SCCL",
+      "nif": "2089-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 163,
+      "name": "VALLORT VINYATERS, S.L.",
+      "nif": "2079-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 164,
+      "name": "VINICOLA DE SARRAL I SECCIÓ DE CRÈDIT,SCCL.",
+      "nif": "2101-01",
+      "zone": "CONCA DE BARBERÀ"
+    },
+    {
+      "id": 165,
+      "name": "VINICOLA I SEC.CREDIT S.ISIDRE DE NULLES,SCCL",
+      "nif": "2039-51",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 166,
+      "name": "VINICOLA I SEC.CREDIT S.ISIDRE DE NULLES,SCCL",
+      "nif": "2039-01",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 167,
+      "name": "VINS EL CEP, S.L.",
+      "nif": "2088-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 168,
+      "name": "VINS FONT, S.A.-CASTELLET",
+      "nif": "2001-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 169,
+      "name": "VINS FONT, S.A.-VILARODONA",
+      "nif": "2001-02",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 170,
+      "name": "VINS FONT, S.A.-PUIGPELAT",
+      "nif": "2001-03",
+      "zone": "ALT CAMP"
+    },
+    {
+      "id": 171,
+      "name": "VIÑEDOS BALBO Y BODEGA, S.L.",
+      "nif": "2214-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 172,
+      "name": "VITALPE, S.A.T.",
+      "nif": "2136-01",
+      "zone": "PENEDÈS"
+    },
+    {
+      "id": 173,
+      "name": "VITICULTORES DE LOS RUICES, COOP. V",
+      "nif": "2169-01",
+      "zone": "REQUENA"
+    },
+    {
+      "id": 174,
+      "name": "VITILOSA, S.L.",
+      "nif": "2204-01",
+      "zone": "ALMENDRALEJO"
+    },
+    {
+      "id": 175,
+      "name": "NO APLICA",
+      "nif": "",
+      "zone": "PENEDÈS"
+    }
+  ],
+  "incidents": [
+    {
+      "id": 2,
+      "code": "001",
+      "description": "INCIDENCIA PESADES VERIFICADOR - Incidencia en les pesades introduides per el verificador"
+    },
+    {
+      "id": 3,
+      "code": "002",
+      "description": "INCIDENCIA EXTRANET - Qualsevol problema amb el sistema Extranet-Cavanet"
+    },
+    {
+      "id": 4,
+      "code": "003",
+      "description": "ANOMALIA TICKETS CELLER - Qualsevol anomalia de tickets per culpa del celler"
+    },
+    {
+      "id": 5,
+      "code": "004",
+      "description": "INCIDENCIA TRANSPORT RAIM - Qualsevol incidencia amb el transport de raïm"
+    },
+    {
+      "id": 6,
+      "code": "005",
+      "description": "INCIDENCIA TRANSPORT MOST - Qualsevol incidència amb el transport de Most"
+    },
+    {
+      "id": 7,
+      "code": "006",
+      "description": "INCIDENCIA QUALITAT - Qualsevol incidència de qualitat de raïm o most"
+    },
+    {
+      "id": 8,
+      "code": "007",
+      "description": "DISCREPANCIA - Discrepancies entre kg Celler-Verificador"
+    },
+    {
+      "id": 9,
+      "code": "008",
+      "description": "ERROR FITXATGES EXTRANET - Errores varios producidos por el fichaje de los verificadores."
+    },
+    {
+      "id": 10,
+      "code": "009",
+      "description": "DISCREPANCIA HORARIS - Qualsevol discrepància en les pesades que tingui a veure amb qüestions horàries, sigui per part del verificador o de la bodega."
+    },
+    {
+      "id": 11,
+      "code": "010",
+      "description": "FALTA DE PERSONAL VERIFICADOR - No es disposa de personal suficient per verificar most o raïm"
+    }
+  ],
+  "incident_records": [
+    {
+      "id": 8,
+      "date": "2025-08-20T00:00:00",
+      "registering_coordinator_id": 33,
+      "warehouse_id": 67,
+      "causing_verifier_id": 136,
+      "incident_id": 2,
+      "assigned_coordinator_id": 33,
+      "explanation": "Hi ha un 28.10% de discrepància",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 9,
+      "date": "2025-08-21T00:00:00",
+      "registering_coordinator_id": 33,
+      "warehouse_id": 120,
+      "causing_verifier_id": 179,
+      "incident_id": 2,
+      "assigned_coordinator_id": 33,
+      "explanation": "Hi ha un 15.5% de discrepància i l'horari estava cobert.",
+      "status": "Solucionado",
+      "responsible": "Verificador",
+      "enlace": null
+    },
+    {
+      "id": 10,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "INCIDENCIES AMB HORARIS: no han pogut entrar els horaris perquè extranet estava bloquejat fins a 48h\nROVELLATS\nLA GRANADA\nJUVE I CAMPS\nGIRO DEL GORNER\nMASCARÓ\nALBINYANA\nSUMARROCA\nVILA-RODONA\nCELLERS ALSINA\n\n",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 11,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "Amb data 05/08/25 inicia verema Raimat. Es troba que el celler no està donat d'alta, i per tant no poden entrar les declaracions ni el celler ni els verificadors. Els verificadors han realitzat totes les verificacions amb paper.",
+      "status": "Pendiente",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 12,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 105,
+      "causing_verifier_id": 200,
+      "incident_id": 2,
+      "assigned_coordinator_id": 31,
+      "explanation": "Introdueix tickets en García Carrión Vilanova i no en Sant Martí",
+      "status": "Solucionado",
+      "responsible": "Verificador",
+      "enlace": null
+    },
+    {
+      "id": 13,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 155,
+      "causing_verifier_id": 110,
+      "incident_id": 2,
+      "assigned_coordinator_id": 31,
+      "explanation": "Introdueix totes les pesades en La Granada",
+      "status": "Solucionado",
+      "responsible": "Verificador",
+      "enlace": null
+    },
+    {
+      "id": 16,
+      "date": "2025-08-20T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 87,
+      "causing_verifier_id": 149,
+      "incident_id": 7,
+      "assigned_coordinator_id": 31,
+      "explanation": "S'entra raïm Macabeu amb 13.4 graus ",
+      "status": "Asignado a Técnicos",
+      "responsible": "Bodega",
+      "enlace": null
+    },
+    {
+      "id": 17,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 155,
+      "causing_verifier_id": 110,
+      "incident_id": 4,
+      "assigned_coordinator_id": 31,
+      "explanation": "Estan generant tickets a ma i van a dos parcel.les degut a una caiguda dels sistemes SAP del celler no poden consultar percentatges de titularitat i donen tickets escrits a boli, en aquest cas han generat el 164 però no hi ha informació de parceles i titularitats",
+      "status": "En Proceso",
+      "responsible": "Bodega",
+      "enlace": null
+    },
+    {
+      "id": 30,
+      "date": "2025-08-21T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 192,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL SERVEI DEL DIA 19/08/25 DE 8H-14H. S'HA INTRODUÏT MANUALMENT A L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 36,
+      "date": "2025-08-05T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 81,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "El celler no està donat d'alta ni a Cavanet ni extranet. Realitza l'alta del celler Maria Galofré amb data 04/08/25. Amb data 08/08/25 es dona d'alta a Cavanet i Extranet. Els verificadors han realitzat totes les declaracions amb paper durant 3 dies. No es realitza l'entrada d'aquestes declaracions a extranet ja que es inviable.",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 37,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "Es passen aquestes incidències a l'Alexandre i David (mail 22/08/25). S'assigna al Francesc perquè faci més verificacions i corroborar la incidència.\nEl llistat comparatiu (vs) només agafa una sola varietat crec. Quan només s’entra una varietat, funciona correctament (dia 19/08), la resta de dies no. Ho passo als informàtics.\nEl Power BI a priori funciona segons les declaracions individuals, i per tant no arrossega l’error del llistat comparatiu, però estic veient algunes diferències que he de parlar amb els informàtics, perquè amb un altre Celler he vist que no inclou algunes pesades declarades pels viticultors\n\n",
+      "status": "En Proceso",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 28,
+      "date": "2025-08-20T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 202,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL SERVEI DEL DIA 20/08/25; DE LES 14H-21H. S'HA INTRODUÏT MANUALMENT A L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 27,
+      "date": "2025-08-20T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 174,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL DIA 20 I 21/08/25 QUAN VA INICIAR EL SERVEI, NO HI HA REGISTRE D'HORARI. S'HA INTRODUÏT DE FORMA MANUAL EN L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 34,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 182,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL SERVEI DEL DIA 19/08/25 DE 6H-15H. S'HA INTRODUÏT MANUALMENT A L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 32,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 168,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL SERVEI DEL DIA 19/08/25, NO HI HA REGISTRE DEL SERVEI. S'HA INTRODUÏT MANUALMENT A L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 26,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 108,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL DIA 19/08/25 QUAN VA INICIAR EL SERVEI; DE12H-18H. NO HI HA REGISTRE D'HORARI. S'HA INTRODUÏT DE FORMA MANUAL EN L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 29,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 113,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL SERVEI DEL DIA 19/08/25 DE 8H-14H. S'HA INTRODUÏT MANUALMENT A L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 22,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 109,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL DIA 19/08/25 QUAN VA INICIAR EL SERVEI, NO HI HA REGISTRE D'HORARI. S'HA INTRODUÏT DE FORMA MANUAL EN L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 25,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 200,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL DIA 19/08/25 QUAN VA INICIAR EL SERVEI; DE 14H-20H. NO HI HA REGISTRE D'HORARI, NOMÉS DE LA SORTIDA. S'HA INTRODUÏT DE FORMA MANUAL EN L'ARXIU EXCEL DE SERVEIS I HORES",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 31,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 168,
+      "incident_id": 2,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL SERVEI DEL DIA 19/08/25, NO HI HA REGISTRE DEL SERVEI. S'HA INTRODUÏT MANUALMENT A L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 23,
+      "date": "2025-08-18T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 125,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL DIA 18/08/25 QUAN VA INICIAR EL SERVEI, NO HI HA REGISTRE D'HORARI. S'HA INTRODUÏT DE FORMA MANUAL EN L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 24,
+      "date": "2025-08-18T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 128,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL DIA 18/08/25 QUAN VA INICIAR EL SERVEI, NO HI HA REGISTRE D'HORARI. S'HA INTRODUÏT DE FORMA MANUAL EN L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 19,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 34,
+      "warehouse_id": 73,
+      "causing_verifier_id": 197,
+      "incident_id": 2,
+      "assigned_coordinator_id": 32,
+      "explanation": "Està anotant otras variedades a unes pesades quan aquest any no hi ha otras variedades tot són varietats autoritzades del Cava.",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 33,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 33,
+      "warehouse_id": 168,
+      "causing_verifier_id": 127,
+      "incident_id": 10,
+      "assigned_coordinator_id": 31,
+      "explanation": "No podem cobrir el servei a la tarda, el verificador té horari fins a les 16:00 i el celler acaba a les 20:00",
+      "status": "Solucionado",
+      "responsible": "RRHH",
+      "enlace": null
+    },
+    {
+      "id": 18,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 30,
+      "causing_verifier_id": 195,
+      "incident_id": 8,
+      "assigned_coordinator_id": 31,
+      "explanation": "Discrepancia el dia 20/08/2025 de 209842 kg, el celler ha entrat 265342 kg i el verificador ha verificat 55500",
+      "status": "Solucionado",
+      "responsible": "Coordinador",
+      "enlace": null
+    },
+    {
+      "id": 15,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 155,
+      "causing_verifier_id": 196,
+      "incident_id": 5,
+      "assigned_coordinator_id": 31,
+      "explanation": "Tractor del proveïdor Agrícola Casa Sala porta raïm collit a màquina en remolc sense doble fons",
+      "status": "Solucionado",
+      "responsible": "Bodega",
+      "enlace": null
+    },
+    {
+      "id": 20,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 34,
+      "warehouse_id": 24,
+      "causing_verifier_id": 197,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "Ha obert avui però no va poder obrir horaris.",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 35,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 33,
+      "warehouse_id": 67,
+      "causing_verifier_id": 136,
+      "incident_id": 2,
+      "assigned_coordinator_id": 32,
+      "explanation": "Hi ha 8-9 pesades que el nostre verificador no ha entrat. \nA banda, no podem cobrir tot el servei. La verificadora acaba a les 15:00 i el celler a les 19:00.",
+      "status": "Solucionado",
+      "responsible": "Verificador",
+      "enlace": null
+    },
+    {
+      "id": 7,
+      "date": "2025-08-06T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 31,
+      "explanation": "Faltan viticultors a extranet",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 14,
+      "date": "2025-08-22T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 70,
+      "causing_verifier_id": 107,
+      "incident_id": 4,
+      "assigned_coordinator_id": 31,
+      "explanation": "Hi han 4 tickets per revisar 2 no apte i 2 regular, el celler ho ha introduit per a Cava.",
+      "status": "Solucionado",
+      "responsible": "Bodega",
+      "enlace": null
+    },
+    {
+      "id": 21,
+      "date": "2025-08-20T00:00:00",
+      "registering_coordinator_id": 36,
+      "warehouse_id": 175,
+      "causing_verifier_id": 201,
+      "incident_id": 9,
+      "assigned_coordinator_id": 36,
+      "explanation": "NO VA POGUER FITXAR EL DIA 20/08/25 QUAN VA INICIAR EL SERVEI, NO HI HA REGISTRE D'HORARI. S'HA INTRODUÏT DE FORMA MANUAL EN L'ARXIU EXCEL DE SERVEIS I HORES.",
+      "status": "Solucionado",
+      "responsible": "Servicios Informáticos",
+      "enlace": null
+    },
+    {
+      "id": 38,
+      "date": "2025-08-12T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 73,
+      "causing_verifier_id": 197,
+      "incident_id": 2,
+      "assigned_coordinator_id": 32,
+      "explanation": "La Laura Villa está anotant otras variedades a unes pesades quan aquest any no hi ha otras variedades tot són varietats autoritzades del Cava.\n",
+      "status": "En Proceso",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 39,
+      "date": "2025-08-11T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 24,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "No ha pogut obrir horaris perquè no se li han guardat a extranet.\n",
+      "status": "En Proceso",
+      "responsible": "Bodega",
+      "enlace": null
+    },
+    {
+      "id": 40,
+      "date": "2025-08-15T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 105,
+      "causing_verifier_id": 199,
+      "incident_id": 10,
+      "assigned_coordinator_id": 32,
+      "explanation": "La bodega ha iniciat la verema a la ubicació Vilanova per error.\n",
+      "status": "Pendiente",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 41,
+      "date": "2025-08-15T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 105,
+      "causing_verifier_id": 199,
+      "incident_id": 10,
+      "assigned_coordinator_id": 32,
+      "explanation": "La bodega ha iniciat la verema a la ubicació Vilanova per error.\n",
+      "status": "En Proceso",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 42,
+      "date": "2025-08-07T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 43,
+      "causing_verifier_id": 159,
+      "incident_id": 2,
+      "assigned_coordinator_id": 32,
+      "explanation": "El verificador introdueix les declaracions a C/Mecanica enlloc de C/San Marcos.",
+      "status": "Pendiente",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 43,
+      "date": "2025-08-06T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "Els coordinadors no podien accedir als serveis ni als fitxatges a extranet, impedint el seguiment i validació de les operacions.\nEl sistema redirigeix automàticament els serveis cap a la zona d’Almendralejo, tot i que s’estan entrant per altres zones com Penedès.\n\n",
+      "status": "Pendiente",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 44,
+      "date": "2025-08-21T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "El sistema no permet descarregar les declaracions, impedint la revisió i validació per part del coordinador. Extranet no permet veure les declaracions d'alguns verificadors i cellers.\n\n",
+      "status": "Pendiente",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 45,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 11,
+      "assigned_coordinator_id": 36,
+      "explanation": "Problemes amb la verificació del most, poc personal per distribuir a verificarlos.",
+      "status": "En Proceso",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 46,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 11,
+      "assigned_coordinator_id": 36,
+      "explanation": "A Almendralejo arriben els EPIS tard.",
+      "status": "En Proceso",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 50,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "Es troba que amb tots els cellers de Requena no coincideixen les declaracions d'extranet i Cavanet.",
+      "status": "Pendiente",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 52,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "Ens trobem amb data 19/08/25 que tots els cellers tenen els horaris tancats a Requena.  No col.loquem verificadors i els que tenim els hi diem que encara no poden començar. Es determina posteriorment que ha estat un error de extranet que no guardava els horaris.",
+      "status": "En Proceso",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 53,
+      "date": "2025-08-19T00:00:00",
+      "registering_coordinator_id": 33,
+      "warehouse_id": 91,
+      "causing_verifier_id": 168,
+      "incident_id": 11,
+      "assigned_coordinator_id": 33,
+      "explanation": "No pot anar a la tarda perque s'avisa molt tard",
+      "status": "Solucionado",
+      "responsible": "Verificador",
+      "enlace": null
+    },
+    {
+      "id": 54,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 85,
+      "causing_verifier_id": 115,
+      "incident_id": 7,
+      "assigned_coordinator_id": 31,
+      "explanation": "Ticket amb un grau superior al que marca la normativa de campanya (13.9)",
+      "status": "Asignado a Técnicos",
+      "responsible": "Bodega",
+      "enlace": "https://drive.google.com/open?id=1aGdep0uJMezQg7uMfC5T6-4HXprLm1Uq"
+    },
+    {
+      "id": 56,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 172,
+      "causing_verifier_id": 180,
+      "incident_id": 7,
+      "assigned_coordinator_id": 31,
+      "explanation": "Entrada de raïm amb 13.4 graus",
+      "status": "Asignado a Técnicos",
+      "responsible": "Bodega",
+      "enlace": "https://drive.google.com/open?id=1vKHUtFrmWZw_aPM-eBz6YBpJyiMS9sfo"
+    },
+    {
+      "id": 55,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 66,
+      "causing_verifier_id": 111,
+      "incident_id": 7,
+      "assigned_coordinator_id": 31,
+      "explanation": "Entrada de raïm amb glucònic 1",
+      "status": "Asignado a Técnicos",
+      "responsible": "Bodega",
+      "enlace": "https://drive.google.com/open?id=1yKkOqrv-cHYXD7H_b350MBbFs1fv4XSw"
+    },
+    {
+      "id": 51,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 70,
+      "causing_verifier_id": 199,
+      "incident_id": 10,
+      "assigned_coordinator_id": 31,
+      "explanation": "La verificadora Mari Luz comenta que quedan 11 tractors, solament es pot quedar mitja hora mes del seu horari especificat.",
+      "status": "Solucionado",
+      "responsible": "Bodega",
+      "enlace": null
+    },
+    {
+      "id": 57,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 172,
+      "causing_verifier_id": 180,
+      "incident_id": 7,
+      "assigned_coordinator_id": 31,
+      "explanation": "Entrada de raïm amb 13.2 graus",
+      "status": "Solucionado",
+      "responsible": "Bodega",
+      "enlace": "https://drive.google.com/open?id=1RuUCmOBo5HjM6Myf4r2dBgH2COmU6uGy"
+    },
+    {
+      "id": 58,
+      "date": "2025-08-25T00:00:00",
+      "registering_coordinator_id": 34,
+      "warehouse_id": 82,
+      "causing_verifier_id": 203,
+      "incident_id": 11,
+      "assigned_coordinator_id": 32,
+      "explanation": "El verificador no s'ha presentat a treballar al seu servei del dilluns 25/08, no contesta.",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": ""
+    },
+    {
+      "id": 59,
+      "date": "2025-08-25T00:00:00",
+      "registering_coordinator_id": 34,
+      "warehouse_id": 164,
+      "causing_verifier_id": 204,
+      "incident_id": 11,
+      "assigned_coordinator_id": 32,
+      "explanation": "No ha vingut a buscar els epis, se l'ha escrit i trucat i no hem rebutresposta per part del verificador, te servei a la tarda del 25/08 però no epis.",
+      "status": "Solucionado",
+      "responsible": "Coordinacion",
+      "enlace": ""
+    },
+    {
+      "id": 48,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 43,
+      "causing_verifier_id": 159,
+      "incident_id": 11,
+      "assigned_coordinator_id": 32,
+      "explanation": "09/08/2025, No hi ha cap relleu per Raul Moreno a Romale, que plega a les 7h perquè no es disposa de cap verificador amb disponibilitat i EPIS a Almendralejo.",
+      "status": "Solucionado",
+      "responsible": "RRHH",
+      "enlace": null
+    },
+    {
+      "id": 49,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 3,
+      "assigned_coordinator_id": 32,
+      "explanation": "Incidència a tots els cellers de Requena i ho hem provat a coordinació amb Albosa i tb ens ha passat el següent:\n\nDeshabilitem tota las setmana següent i posem horari, i ens desapareix l’horari posat.\nHi havia horari pel dissabte posat, perquè el vam posar nosaltres i ha desaparegut.\n\nPer tant hi ha tots els cellers que han obert i han entrat raïm, nosaltres veiem horari tancat i per tant no posàvem verificador.\n",
+      "status": "En Proceso",
+      "responsible": "Coordinacion",
+      "enlace": null
+    },
+    {
+      "id": 47,
+      "date": "2025-08-23T00:00:00",
+      "registering_coordinator_id": 32,
+      "warehouse_id": 175,
+      "causing_verifier_id": 199,
+      "incident_id": 2,
+      "assigned_coordinator_id": 32,
+      "explanation": "Remolc sense grifo ni doble fons (16/08/2025 a les 08:49 – FINCA LA MANCHUELA, SAT Nº513 CV). No es pot fer verificació correcta. Remolc sense doble Fons ni grifo. Ja ho apuntarà en ppi el Jorge a incidències de verificadors quan tingui dni i celler obert",
+      "status": "Solucionado",
+      "responsible": "Bodega",
+      "enlace": null
+    },
+    {
+      "id": 60,
+      "date": "2025-08-25T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 85,
+      "causing_verifier_id": 115,
+      "incident_id": 7,
+      "assigned_coordinator_id": 31,
+      "explanation": "Ticket 195 amb grau alcohòlic 13,6. S'envia mail a Oriol de Manuel",
+      "status": "Solucionado",
+      "responsible": "Bodega",
+      "enlace": "https://drive.google.com/file/d/1N8hZZSgymaYIRDF9azbGUf1D7k7xPVEP/view"
+    },
+    {
+      "id": 61,
+      "date": "2025-08-25T00:00:00",
+      "registering_coordinator_id": 31,
+      "warehouse_id": 155,
+      "causing_verifier_id": 110,
+      "incident_id": 7,
+      "assigned_coordinator_id": 31,
+      "explanation": "Entra varietat Macabeu amb grau de 13.7. Numero de ticket 060213. Proveidor RVENTOS MARCE, JOAN 77109184M. PARCELA IQ215",
+      "status": "Asignado a Técnicos",
+      "responsible": "Bodega",
+      "enlace": "https://drive.google.com/file/d/1nuYnYUS-V-ALZPwC8ZCI5ljM2VW-pKz8/view"
+    }
+  ],
+  "incident_actions": [
+    {
+      "id": 1,
+      "incident_record_id": 7,
+      "action_date": "2025-08-08T00:00:00",
+      "action_description": "Se avisa a Oriol de Manuel",
+      "new_status": "Asignado a Técnicos",
+      "performed_by": "31"
+    },
+    {
+      "id": 2,
+      "incident_record_id": 8,
+      "action_date": "2025-08-21T00:00:00",
+      "action_description": "Es comproven horaris de celler i verificadora, no es pot cobrir horari sencer del celler que tenia hora de finalització a les 19 hores y la verificadora fins a les 14 hores",
+      "new_status": "Solucionado",
+      "performed_by": "33"
+    },
+    {
+      "id": 3,
+      "incident_record_id": 9,
+      "action_date": "2025-08-21T00:00:00",
+      "action_description": "Es filtra numero de pesades a RVC i a extranet i s'observa que hi han pesades entre mig que no han verificat tant al matí com a  la tarda. Es contacta amb verificadors per whatsapp i s'informa de la situació perque intentin que no es pasin remolcs dintre d'horari.",
+      "new_status": "Solucionado",
+      "performed_by": "33"
+    },
+    {
+      "id": 4,
+      "incident_record_id": 10,
+      "action_date": "2025-08-22T00:00:00",
+      "action_description": "Es parla amb els informàtics per tal que modifiquin el temps per modificar els horaris d'extranet dels cellers, els quals es puguin canviar fins a les 16h del dia anterior, tal i com indiquen les normes de campanya.",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 5,
+      "incident_record_id": 12,
+      "action_date": "2025-08-22T00:00:00",
+      "action_description": "S'esborren registres de García Carrion Vilanova i se li comenta a la verificadora que fiqui els tickets al celler correcte",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 6,
+      "incident_record_id": 13,
+      "action_date": "2025-08-22T00:00:00",
+      "action_description": "S'esborren manualment tots els tickets i s'avisa a la verificadora que els introdueixi en el celler correcte.",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 7,
+      "incident_record_id": 16,
+      "action_date": "2025-08-20T00:00:00",
+      "action_description": "S'avisa a Oriol De Manuel i s'envia mail amb l'información del ticket",
+      "new_status": "Asignado a Técnicos",
+      "performed_by": "31"
+    },
+    {
+      "id": 8,
+      "incident_record_id": 18,
+      "action_date": "2025-08-22T00:00:00",
+      "action_description": "L'anàlisi comparativa entre les dades de les declaracions de DOCava (extretes via extranet) i els registres del verificador i del fitxer de Cavanet ha revelat incongruències significatives.\n\nLes principals discrepàncies es troben en les dades totals de quilograms i pesades de l'arxiu DOCava, les quals no presenten coherència amb la informació registrada a Cavanet. Es considera que la causa més probable és un error durant la introducció de dades al celler.\n\nPer aquest motiu, és necessari prosseguir amb la investigació per determinar amb exactitud l'origen d'aquestes diferències.",
+      "new_status": "En Proceso",
+      "performed_by": "31"
+    },
+    {
+      "id": 9,
+      "incident_record_id": 30,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 10,
+      "incident_record_id": 21,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació., Nuevo Status: Solucionado, Realizado por: 31",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 11,
+      "incident_record_id": 28,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 12,
+      "incident_record_id": 28,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 13,
+      "incident_record_id": 27,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 14,
+      "incident_record_id": 34,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 15,
+      "incident_record_id": 32,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 16,
+      "incident_record_id": 26,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 17,
+      "incident_record_id": 29,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 19,
+      "incident_record_id": 25,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 18,
+      "incident_record_id": 22,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 20,
+      "incident_record_id": 31,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 21,
+      "incident_record_id": 23,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 22,
+      "incident_record_id": 24,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es parla amb l'Alexandre conforme el fitxatges no funcionen. Es realitzen modificacions amb els informàtics i es truca amb cada un dels verificadors per obtenir informació de la incidència. De forma general les incidències són, es queda la pantalla penjada, el comptador es queda bloquejat, el comptador queda a zero, tira enrere de l'aplicació.",
+      "new_status": "Solucionado",
+      "performed_by": "36"
+    },
+    {
+      "id": 23,
+      "incident_record_id": 19,
+      "action_date": "2025-08-23T00:00:00",
+      "action_description": "Es truca a la verificadora recordant que no pot entrar otras variedades. Han de ser varietats autoritzades de cava. S'envia whatsapp tb.",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 24,
+      "incident_record_id": 33,
+      "action_date": "2025-08-24T00:00:00",
+      "action_description": "Per la setmana del 25/08 entra més personal i es podrà cobrir, actualment no disposem de personal per cobrir tots els horaris dels cellers incidentals.",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 25,
+      "incident_record_id": 54,
+      "action_date": "2025-08-24T07:57:28",
+      "action_description": "S'envia mail a Oriol de Manuel amb l'informació del ticket",
+      "new_status": "Asignado a Técnicos",
+      "performed_by": "31"
+    },
+    {
+      "id": 26,
+      "incident_record_id": 18,
+      "action_date": "2025-08-24T20:34:00",
+      "action_description": "Degut a un problema de codificació de parcel.les les dades de Cavanet son incorrectes. Les correctes son les de extranet. El percentatge de desviació es 0% utilitzant extranet.",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 27,
+      "incident_record_id": 56,
+      "action_date": "2025-08-25T09:31:32",
+      "action_description": "S'envia e-mail a Oriol de Manuel amb els tickets",
+      "new_status": "Asignado a Técnicos",
+      "performed_by": "31"
+    },
+    {
+      "id": 28,
+      "incident_record_id": 55,
+      "action_date": "2025-08-25T09:34:53",
+      "action_description": "S'envia mail a Oriol de Manuel",
+      "new_status": "Asignado a Técnicos",
+      "performed_by": "31"
+    },
+    {
+      "id": 29,
+      "incident_record_id": 51,
+      "action_date": "2025-08-25T09:37:57",
+      "action_description": "Es fa 1 hora més de servei a la tarda. ",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 30,
+      "incident_record_id": 57,
+      "action_date": "2025-08-25T09:39:21",
+      "action_description": "Està dintre del límit màxim",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 31,
+      "incident_record_id": 17,
+      "action_date": "2025-08-25T09:54:54",
+      "action_description": "Es farà un seguiment de Segura Viudas amb les declaracions del dissabte, a dia 25/08/2025 encara no ha pujat les declaracions ",
+      "new_status": "En Proceso",
+      "performed_by": "31"
+    },
+    {
+      "id": 32,
+      "incident_record_id": 15,
+      "action_date": "2025-08-23T09:56:48",
+      "action_description": "S'avisa a tècnics",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    },
+    {
+      "id": 33,
+      "incident_record_id": 17,
+      "action_date": "2025-08-25T17:14:16",
+      "action_description": "Amb data 25/08 Segura Viudas encara no havia pujat les declaracions a extranet.",
+      "new_status": null,
+      "performed_by": "31"
+    },
+    {
+      "id": 34,
+      "incident_record_id": 58,
+      "action_date": "2025-08-26T11:07:01",
+      "action_description": "El verificador ROZALÉN DIAZ, MARCOS JOSÉ, no s'ha presentat al servei donat. Ens envia whatsapp dient que no treballarà si no es amb contracte indefinit. S'envia a la Gemma perquè realitzi una alta anul·lada.\nEl mateix amb OQUENDO RIZO, KEVIN ESTEBAN, no es presenta al lloc de treball i es realitza una alta anul·lada",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 35,
+      "incident_record_id": 59,
+      "action_date": "2025-08-26T11:09:51",
+      "action_description": "Es realitza alta anulada per no presentar-se",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 36,
+      "incident_record_id": 48,
+      "action_date": "2025-08-26T11:14:13",
+      "action_description": "No s'ha disposat de personal amb epis durant la setmana del 18/08/25. S'ha reclamat, i s'han enviat epis.",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 37,
+      "incident_record_id": 49,
+      "action_date": "2025-08-26T11:20:08",
+      "action_description": "Amb data 26/08/25 seguim tenint la incidència. Ens envien mail diferents cellers conforme posen horaris i posteriorment apareix com a horari tancat. En genera molta discrepància en la verificació, ja que com que l'horari ens apareix com a  tancat no assignem verificador. \nS'envien varis correus (David, Alexandre), perquè ho remetin als informàtics.\n",
+      "new_status": "En Proceso",
+      "performed_by": "32"
+    },
+    {
+      "id": 38,
+      "incident_record_id": 47,
+      "action_date": "2025-08-26T11:25:55",
+      "action_description": "Tots els verificadors anoten a observacions si es collit a màquina sense doble fons.",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 39,
+      "incident_record_id": 20,
+      "action_date": "2025-08-26T11:29:45",
+      "action_description": "Incidencia a extranet amb els horaris, a part de que per falta de personal no es cobreix el celler al 100% ni en horari ni en dies ",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 40,
+      "incident_record_id": 35,
+      "action_date": "2025-08-26T11:35:08",
+      "action_description": "Seguim sense poder cobrir tot el servei per falta de personal. Noe s disposa de més personal a la zona de Penedès per tant degut al nivell de risc del celler no es cobrirà al 100% durant aquesta campanya.",
+      "new_status": "Solucionado",
+      "performed_by": "32"
+    },
+    {
+      "id": 41,
+      "incident_record_id": 7,
+      "action_date": "2025-08-28T00:22:56",
+      "action_description": "TEST: Cambio de estado a Solucionado",
+      "new_status": "Solucionado",
+      "performed_by": "1"
+    },
+    {
+      "id": 42,
+      "incident_record_id": 60,
+      "action_date": "2025-08-28T00:23:55",
+      "action_description": "TEST UI: Cambio de estado a Solucionado desde formulario",
+      "new_status": "Solucionado",
+      "performed_by": "1"
+    },
+    {
+      "id": 43,
+      "incident_record_id": 61,
+      "action_date": "2025-08-27T22:29:50",
+      "action_description": "S'avisa a Oriol de Manuel",
+      "new_status": "Asignado a Técnicos",
+      "performed_by": "31"
+    },
+    {
+      "id": 44,
+      "incident_record_id": 14,
+      "action_date": "2025-08-27T22:31:18",
+      "action_description": "Es revisen els tickets i no es troben a eRVC. ",
+      "new_status": "Solucionado",
+      "performed_by": "31"
+    }
+  ]
+}
