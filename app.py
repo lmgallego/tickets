@@ -247,8 +247,8 @@ if not st.session_state.logged_in:
     st.markdown("""
     <style>
     .login-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 3rem;
+        background: #cdcdcd;
+        padding: 1.5rem;
         border-radius: 20px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         margin: 2rem auto;
@@ -259,24 +259,24 @@ if not st.session_state.logged_in:
     }
     
     .login-title {
-        color: white;
-        font-size: 2.5rem;
+        color: #333333;
+        font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     
     .login-subtitle {
-        color: rgba(255,255,255,0.9);
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
+        color: #666666;
+        font-size: 1rem;
+        margin-bottom: 1rem;
         font-weight: 300;
     }
     
     .login-icon {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        color: white;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #333333;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     
@@ -377,7 +377,7 @@ if not st.session_state.logged_in:
         st.markdown("""
         <div class="login-container">
             <div class="login-icon">🔐</div>
-            <h1 class="login-title">CAVA CRM</h1>
+            <h1 class="login-title">CAVA FLOW</h1>
             <p class="login-subtitle">Sistema de Gestión de Incidencias</p>
         </div>
         """, unsafe_allow_html=True)
