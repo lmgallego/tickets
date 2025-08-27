@@ -243,22 +243,178 @@ def clear_session_state():
 initialize_session_state()
 
 if not st.session_state.logged_in:
-    st.subheader("Iniciar Sesión")
-    username = st.text_input("Usuario")
-    password = st.text_input("Contraseña", type="password")
-    if st.button("Entrar"):
-        hashed_password = hashlib.sha256(password.encode()).hexdigest()
-        stored_hash = hashlib.sha256("Cava1234!".encode()).hexdigest()
-        if username == "coordinador" and hashed_password == stored_hash:
-            st.session_state.logged_in = True
-            st.session_state.role = "coordinador"
-            st.rerun()
-        elif username == "admin" and hashed_password == stored_hash:
-            st.session_state.logged_in = True
-            st.session_state.role = "admin"
-            st.rerun()
-        else:
-            st.error("Usuario o contraseña incorrectos.")
+    # CSS personalizado para la pantalla de login
+    st.markdown("""
+    <style>
+    .login-container {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        margin: 2rem auto;
+        max-width: 450px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .login-title {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .login-subtitle {
+        color: rgba(255,255,255,0.9);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+    }
+    
+    .login-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .stTextInput > div > div > input {
+        background: rgba(255,255,255,0.9) !important;
+        border: 2px solid transparent !important;
+        border-radius: 12px !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #4CAF50 !important;
+        box-shadow: 0 0 0 3px rgba(76,175,80,0.2) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    .stButton > button {
+        background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 0.75rem 2rem !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 6px 12px rgba(76,175,80,0.3) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #45a049, #3d8b40) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 16px rgba(76,175,80,0.4) !important;
+    }
+    
+    .stButton > button:active {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 8px rgba(76,175,80,0.3) !important;
+    }
+    
+    .login-footer {
+        margin-top: 2rem;
+        color: rgba(255,255,255,0.7);
+        font-size: 0.9rem;
+    }
+    
+    .user-roles {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .role-item {
+        color: rgba(255,255,255,0.9);
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+    }
+    
+    /* Animación de entrada */
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .login-container {
+        animation: slideIn 0.6s ease-out;
+    }
+    
+    /* Ocultar elementos de Streamlit */
+    .stApp > header {
+        background-color: transparent;
+    }
+    
+    .main .block-container {
+        padding-top: 2rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Crear el contenedor de login centrado
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        st.markdown("""
+        <div class="login-container">
+            <div class="login-icon">🔐</div>
+            <h1 class="login-title">CAVA CRM</h1>
+            <p class="login-subtitle">Sistema de Gestión de Incidencias</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Formulario de login con espaciado
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        with st.container():
+            username = st.text_input("👤 Usuario", placeholder="Ingrese su usuario")
+            password = st.text_input("🔒 Contraseña", type="password", placeholder="Ingrese su contraseña")
+            
+
+            
+            if st.button("🚀 Iniciar Sesión"):
+                if not username or not password:
+                    st.error("⚠️ Por favor, complete todos los campos")
+                else:
+                    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+                    stored_hash = hashlib.sha256("Cava1234!".encode()).hexdigest()
+                    
+                    if username == "coordinador" and hashed_password == stored_hash:
+                        st.success("✅ ¡Bienvenido, Coordinador!")
+                        st.session_state.logged_in = True
+                        st.session_state.role = "coordinador"
+                        st.balloons()
+                        st.rerun()
+                    elif username == "admin" and hashed_password == stored_hash:
+                        st.success("✅ ¡Bienvenido, Administrador!")
+                        st.session_state.logged_in = True
+                        st.session_state.role = "admin"
+                        st.balloons()
+                        st.rerun()
+                    else:
+                         st.error("❌ Usuario o contraseña incorrectos")
+                         st.warning("🔒 Acceso denegado. Contacte al administrador del sistema.")
+        
+
 else:
     role = st.session_state.get('role', 'coordinador')
     
