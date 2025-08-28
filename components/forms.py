@@ -544,20 +544,24 @@ def manage_incident_actions_form():
                 success = insert_incident_action(incident_record_id, action_date, action_description, new_status, performed_by)
             
             if success:
-                # Limpiar cache de Streamlit para forzar actualización de datos
-                try:
-                    st.cache_data.clear()
-                except:
-                    pass  # Ignorar si no se puede limpiar el cache
-                
                 st.success('Acción guardada exitosamente.')
+                
+                # Mostrar mensaje informativo sobre la actualización
+                if new_status:
+                    st.info(f'✅ Estado actualizado a: **{new_status}**')
+                
                 # Incrementar contador para limpiar formulario
                 st.session_state.incident_actions_counter += 1
+                
+                # Pequeña pausa para permitir que la base de datos se actualice completamente
+                import time
+                time.sleep(0.5)
+                
                 st.rerun()
             else:
-                st.error('Error al guardar la acción. Por favor, inténtelo de nuevo.')
+                st.error('❌ Error al guardar la acción. Por favor, verifique los datos e inténtelo de nuevo.')
         else:
-            st.error('Por favor, complete fecha, descripción y realizado por.')
+            st.error('⚠️ Por favor, complete todos los campos obligatorios: fecha, descripción y realizado por.')
 
 # Formularios de edición
 def edit_coordinator_form():

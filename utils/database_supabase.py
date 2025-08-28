@@ -333,9 +333,31 @@ def insert_incident_action(incident_record_id, action_date, action_description, 
         
         # Actualizar el estado del registro si se proporciona un nuevo estado
         if new_status:
-            client.table('incident_records').update({
+            update_result = client.table('incident_records').update({
                 'status': new_status
             }).eq('id', incident_record_id).execute()
+            
+            # Verificar que la actualización fue exitosa
+            if not update_result.data:
+                logger.warning(f"Update may have failed for incident record {incident_record_id}")
+        
+        # Limpiar caches específicos que pueden estar afectados por esta actualización
+        try:
+            # Limpiar funciones con cache que muestran estadísticas y datos dinámicos
+            get_dashboard_stats.clear()
+            get_recent_actions.clear()
+            get_recent_incidents.clear()
+            get_all_incident_records_df.clear()
+            get_pending_incidents_summary.clear()
+            get_filtered_pending_incidents.clear()
+            get_pending_incidents_by_coordinator.clear()
+            
+            # Limpiar caches de análisis por estado
+            get_incidents_by_status.clear()
+            
+            logger.info(f"Cleared relevant caches after updating incident {incident_record_id}")
+        except Exception as cache_error:
+            logger.warning(f"Error clearing caches: {cache_error}")
         
         logger.info(f"Inserted action for incident record {incident_record_id}")
         return True
