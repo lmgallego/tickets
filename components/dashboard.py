@@ -107,13 +107,27 @@ def dashboard_main():
                 format_func=lambda x: x[1],
                 key="days_filter"
             )
+            
+            
+            selected_date = st.date_input(
+                "Fecha específica",
+                format="DD/MM/YYYY",
+                value=None,
+                key="specific_date_filter"
+            )
         
         # Obtener incidencias filtradas con múltiples criterios
         coordinator_id = selected_coordinator[0] if selected_coordinator[0] is not None else None
         status_filter = selected_status[0] if selected_status[0] is not None else None
         days_filter = selected_days[0] if selected_days[0] is not None else None
         
-        filtered_incidents = get_filtered_pending_incidents(coordinator_id, status_filter, days_filter)
+        filtered_incidents = get_filtered_pending_incidents(
+            coordinator_id, 
+            status_filter, 
+            days_filter, 
+            selected_date
+        )
+        
         
         if filtered_incidents.empty:
             if coordinator_id:

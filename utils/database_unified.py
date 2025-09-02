@@ -57,11 +57,11 @@ def get_pending_incidents_by_coordinator(coordinator_id=None):
         from .database import get_pending_incidents_by_coordinator as get_pending_sqlite
         return get_pending_sqlite(coordinator_id)
 
-def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
+def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None, selected_date=None):
     """Obtiene incidencias pendientes con filtros múltiples"""
     if DATABASE_TYPE == "supabase":
         from .database_supabase import get_filtered_pending_incidents as get_filtered_supabase
-        return get_filtered_supabase(coordinator_id, status, days)
+        return get_filtered_supabase(coordinator_id, status, days, selected_date)
     else:
         from .database import get_filtered_pending_incidents as get_filtered_sqlite
-        return get_filtered_sqlite(coordinator_id, status, days)
+        return get_filtered_sqlite(coordinator_id, status, days, selected_date)

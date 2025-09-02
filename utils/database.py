@@ -695,7 +695,7 @@ def get_pending_incidents_by_coordinator(coordinator_id=None):
     finally:
         conn.close()
 
-def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
+def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None, selected_date=None):
     """Obtiene incidencias pendientes con filtros múltiples"""
     try:
         conn = get_db_connection()
@@ -729,6 +729,10 @@ def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
         if days:
             query += " AND ir.date >= date('now', '-{} days')".format(days)
         
+        
+        if selected_date:
+            query += " AND ir.date = ?"
+            params.append(selected_date.strftime('%Y-%m-%d'))
         query += " ORDER BY ir.date DESC LIMIT 20"
         
         records = conn.execute(query, params).fetchall()

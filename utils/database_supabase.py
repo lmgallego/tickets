@@ -1181,7 +1181,7 @@ def get_pending_incidents_by_coordinator(coordinator_id=None):
         return pd.DataFrame()
 
 @st.cache_data(ttl=120)  # Cache por 2 minutos para datos dinámicos
-def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
+def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None, selected_date=None):
     """Obtiene incidencias pendientes con filtros múltiples"""
     try:
         client = get_supabase_connection()
@@ -1207,6 +1207,10 @@ def get_filtered_pending_incidents(coordinator_id=None, status=None, days=None):
             from datetime import datetime, timedelta
             cutoff_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
             query = query.gte('date', cutoff_date)
+        
+        if selected_date:
+            date_str = selected_date.strftime('%Y-%m-%d')
+            query = query.eq('date', date_str)
         
         # Si no se especifica coordinador (Todos los coordinadores), limitar a 5 incidencias
         # Si se especifica un coordinador, mostrar todas sus incidencias
