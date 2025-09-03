@@ -228,7 +228,9 @@ def clear_session_state():
         'logged_in', 'role', 'main_menu_override', 'sub_menu_override', 
         'in_manage_actions', 'force_stay_in_actions', 'in_search_mode',
         'from_quick_access', 'selected_incident_record_id', 'navigate_to_actions',
-        'navigate_to', 'last_created_record_id', 'loading_large_dataset'
+        'navigate_to', 'last_created_record_id', 'loading_large_dataset',
+        # Limpiar también los filtros del dashboard al cerrar sesión
+        'coordinator_filter', 'status_filter', 'days_filter', 'specific_date_filter'
     }
     
     # Eliminar solo las claves específicas
@@ -425,6 +427,8 @@ else:
         if dashboard_nav == 'manage_actions':
             st.session_state['main_menu_override'] = 'Incidencias'
             st.session_state['sub_menu_override'] = 'Gestión de Acciones'
+            # Marcar que venimos del dashboard para preservar filtros
+            st.session_state['from_dashboard'] = True
         elif dashboard_nav == 'new_incident_record':
             st.session_state['main_menu_override'] = 'Incidencias'
             st.session_state['sub_menu_override'] = 'Registro de Incidencia'
@@ -521,6 +525,7 @@ else:
                 main_selected = "Incidencias"
             elif main_selected == "Dashboard":
                 # Limpiar todas las variables de fuerza si el usuario va al Dashboard
+                # PERO preservar la bandera from_dashboard para mantener filtros
                 if 'force_stay_in_actions' in st.session_state:
                     del st.session_state['force_stay_in_actions']
                 if 'in_manage_actions' in st.session_state:

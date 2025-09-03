@@ -57,6 +57,30 @@ def dashboard_main():
     # Layout en dos columnas
     col_left, col_right = st.columns([2, 1])
     
+    # Verificar si se deben limpiar los filtros ANTES de renderizar los widgets
+    if st.session_state.get('clear_filters', False):
+        # Eliminar las claves de filtros para que se reinicialicen
+        for key in ['coordinator_filter', 'status_filter', 'days_filter', 'specific_date_filter']:
+            if key in st.session_state:
+                del st.session_state[key]
+        # Limpiar la bandera
+        st.session_state.clear_filters = False
+        st.rerun()
+    
+    # Si venimos del dashboard (después de gestionar), limpiar la bandera y restaurar filtros preservados
+    if st.session_state.get('from_dashboard', False):
+        del st.session_state['from_dashboard']
+        
+        # Restaurar filtros preservados si existen
+        if 'preserved_coordinator_filter' in st.session_state:
+            st.session_state.coordinator_filter = st.session_state.pop('preserved_coordinator_filter')
+        if 'preserved_status_filter' in st.session_state:
+            st.session_state.status_filter = st.session_state.pop('preserved_status_filter')
+        if 'preserved_days_filter' in st.session_state:
+            st.session_state.days_filter = st.session_state.pop('preserved_days_filter')
+        if 'preserved_date_filter' in st.session_state:
+            st.session_state.specific_date_filter = st.session_state.pop('preserved_date_filter')
+
     with col_left:
         # Sección de incidencias pendientes
         st.subheader("🚨 Incidencias Pendientes")
@@ -108,13 +132,21 @@ def dashboard_main():
                 key="days_filter"
             )
             
+            # Determinar el valor por defecto para la fecha
+            default_date_value = st.session_state.get('specific_date_filter', None)
             
             selected_date = st.date_input(
                 "Fecha específica",
                 format="DD/MM/YYYY",
-                value=None,
+                value=default_date_value,
                 key="specific_date_filter"
             )
+            
+            # Botón para limpiar filtros
+            if st.button("🔄 Limpiar Filtros", help="Restablecer todos los filtros a sus valores por defecto"):
+                # Usar una bandera para indicar que se deben limpiar los filtros
+                st.session_state.clear_filters = True
+                st.rerun()
         
         # Obtener incidencias filtradas con múltiples criterios
         coordinator_id = selected_coordinator[0] if selected_coordinator[0] is not None else None
@@ -173,6 +205,12 @@ def dashboard_main():
                                 help="Ir a Gestión de Acciones para esta incidencia",
                                 type="primary"
                             ):
+                                # Preservar los valores actuales de los filtros antes de navegar
+                                st.session_state['preserved_coordinator_filter'] = selected_coordinator
+                                st.session_state['preserved_status_filter'] = selected_status
+                                st.session_state['preserved_days_filter'] = selected_days
+                                st.session_state['preserved_date_filter'] = selected_date
+                                
                                 # Guardar el ID de la incidencia en session_state para navegación
                                 st.session_state['selected_incident_record_id'] = incident['id']
                                 st.session_state['navigate_to_actions'] = True
